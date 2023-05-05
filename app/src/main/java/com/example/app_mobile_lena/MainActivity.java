@@ -14,19 +14,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.product_detail);
+        setContentView(R.layout.activity_main);
 
-        Button button1 = findViewById(R.id.btnShowDescription);
-        Button button2 = findViewById(R.id.btnShowReviews);
+//        Button button1 = findViewById(R.id.btnShowDescription);
+//        Button button2 = findViewById(R.id.btnShowReviews);
 
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.flFragment, new ProductDescription_Fragment());
-                fragmentTransaction.commit();
-            }
-        });
+//        button2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FragmentManager fragmentManager = getSupportFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.flFragment, new ProductDescription_Fragment());
+//                fragmentTransaction.commit();
+//            }
+//        });
     }
 }
