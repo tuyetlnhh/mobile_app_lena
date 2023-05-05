@@ -2,4 +2,5 @@
     <!-- strings.xml -->
     <string name="len">LEN</string>
     <string name="logoA">A</string>
+    <string name="btnBackDescription">Comeback to main store</string>
 </resources>
