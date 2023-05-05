@@ -18,15 +18,6 @@ public class MainActivity extends AppCompatActivity {
 
         Button button1 = findViewById(R.id.btnShowDescription);
         Button button2 = findViewById(R.id.btnShowReviews);
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.flFragment, new Fragment1());
-                fragmentTransaction.commit();
-            }
-        });
 
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
