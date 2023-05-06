@@ -9,12 +9,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class GridAdapter extends BaseAdapter {
-    product_list_fragment context;
+    Context context;
     String[] name;
     int[] img;
     LayoutInflater inflater;
 
-    public GridAdapter(product_list_fragment context, String[] name, int[] img){
+    public GridAdapter(Context context, String[] name, int[] img){
         this.context = context;
         this.name = name;
         this.img = img;

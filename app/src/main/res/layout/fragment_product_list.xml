@@ -6,11 +6,19 @@
     tools:context=".product_list_fragment">
 
     <!-- TODO: Update blank fragment layout -->
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="261dp"
+        android:layout_height="61dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Name" />
+
     <GridView
         android:id="@+id/grid_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:numColumns="2"/>
+        android:numColumns="2" />
 
 
 </FrameLayout>
