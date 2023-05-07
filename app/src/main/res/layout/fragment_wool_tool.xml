@@ -3,13 +3,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00BCD4"
-    tools:context=".wool_tool_fragment">
+    tools:context=".wool_product_fragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/bottom_border"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="Len"
+            android:textColor="#000000"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/bottom_border"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="Cây Móc"
+            android:textColor="#000000"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/bottom_border"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="Phụ Kiện"
+            android:textColor="#000000"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/bottom_border"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="Khác"
+            android:textColor="#000000"
+            android:textSize="24sp" />
+
+    </LinearLayout>
 
 </FrameLayout>

@@ -3,21 +3,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".category_fragment">
+
+    <LinearLayout
+        android:id="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="10dp">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/edit_text_bg"
+            android:hint="@string/hintSearch"
+            android:paddingLeft="10dp"
+            android:textColorHint="@color/shadow"
+            android:textSize="8pt">
+
+        </EditText>
+
+        <ImageButton
+            android:id="@+id/cart"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:contentDescription="Cart"
+            app:srcCompat="@drawable/shop_cart" />
+
+        <ImageButton
+            android:id="@+id/notification"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:contentDescription="Notification"
+            app:srcCompat="@drawable/bell" />
+
+    </LinearLayout>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabMode="fixed"
-        app:tabGravity="fill">
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        app:tabGravity="fill"
+        android:contentDescription="tab_layout"
+        android:background="@color/white">
+
     </com.google.android.material.tabs.TabLayout>
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/view_pager"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager_category"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:layout_below = "@id/tab_layout"/>
 </LinearLayout>

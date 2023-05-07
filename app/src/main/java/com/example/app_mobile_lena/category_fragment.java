@@ -1,12 +1,18 @@
 package com.example.app_mobile_lena;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +30,11 @@ public class category_fragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    categoryAdapter adapter;
+    TabLayout tabLayout;
+    ViewPager2 viewPager2;
+
+    private String[] titles = new String[] {"Sản Phẩm Từ Len", "Dụng Cụ Len"};
     public category_fragment() {
         // Required empty public constructor
     }
@@ -59,6 +70,15 @@ public class category_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_category, container, false);
+        View view = inflater.inflate(R.layout.fragment_category, container, false);
+        viewPager2 = view.findViewById(R.id.view_pager_category);
+        tabLayout = view.findViewById(R.id.tab_layout);
+        Context context = getContext();
+        adapter = new categoryAdapter((FragmentActivity) context);
+        viewPager2.setAdapter(adapter);
+        new TabLayoutMediator(tabLayout, viewPager2,((tab, position)->tab.setText(titles[position]))).attach();
+
+
+        return view;
     }
 }

@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigation.addItem(item5);
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(new home_frament());
-        fragments.add(new product_list_fragment());
+        fragments.add(new category_fragment());
         fragments.add(new qr_fragment());
         fragments.add(new favourite_fragment());
         fragments.add(new account_fragment());
