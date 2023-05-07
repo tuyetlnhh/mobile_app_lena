@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         ratingBar.setRating(5f);
 
         setContentView(R.layout.activity_main);
+
         AHBottomNavigation bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);
 
 // Create items

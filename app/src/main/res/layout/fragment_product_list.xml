@@ -1,24 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sort_icon"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="#FFFFFF"
     tools:context=".product_list_fragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <EditText
-        android:id="@+id/editTextText"
-        android:layout_width="261dp"
-        android:layout_height="61dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Name" />
 
-    <GridView
-        android:id="@+id/grid_view"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:numColumns="2" />
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#FFFFFF"
+                android:contentDescription="Button to perform an action"
+                android:src="@drawable/back_30px" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="289dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="Gấu Bông"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#FFFFFF"
+                android:contentDescription="Button to perform an action"
+                android:src="@drawable/shopping_cart_30px" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:backgroundTint="#FDFDFD"
+                android:contentDescription="sort"
+                android:src="@drawable/sort__2_" />
+
+            <ImageButton
+                android:id="@+id/imageButton6"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:backgroundTint="#FFFCFC"
+                android:contentDescription="filter"
+                android:src="@drawable/filter_filled_tool_symbol__1___3_" />
+
+        </LinearLayout>
+
+
+        <GridView
+            android:id="@+id/grid_view"
+            android:layout_width="match_parent"
+            android:layout_height="593dp"
+            android:numColumns="2" />
+
+    </LinearLayout>
 
 
 </FrameLayout>
