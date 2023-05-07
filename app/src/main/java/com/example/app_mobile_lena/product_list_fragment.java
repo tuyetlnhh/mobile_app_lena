@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
-import com.example.app_mobile_lena.databinding.ActivityMainBinding;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,7 +32,7 @@ public class product_list_fragment extends Fragment {
     private String mParam2;
 
     private GridView gview;
-    ActivityMainBinding binding;
+
 
     public product_list_fragment() {
         // Required empty public constructor
@@ -69,10 +69,12 @@ public class product_list_fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_product_list, container, false);
         gview = view.findViewById(R.id.grid_view);
-        String[] name = {"chó","mèo","cáo","chồn"};
+        String[] name = {"chó","mèo","cáo","chồn","Hổ"};
         Context context = getContext();
-        int[] img = {R.drawable.image_1,R.drawable.image_2,R.drawable.image_3,R.drawable.image_4};
-        GridAdapter grid = new GridAdapter(context, name, img);
+        int[] img = {R.drawable.image_1,R.drawable.image_2,R.drawable.image_3,R.drawable.image_4,R.drawable.image_4};
+        int[] price_sale = {150000, 200000, 120000, 60000, 430000};
+        int[] price = {150000, 200000, 120000, 60000, 430000};
+        GridAdapter grid = new GridAdapter(context, name, img, price_sale, price);
         gview.setAdapter(grid);
         return view;
     }
