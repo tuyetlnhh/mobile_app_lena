@@ -47,45 +47,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="413dp"
-        android:layout_height="220dp"
-        android:layout_marginTop="64dp"
-        android:scaleType="center"
-        android:src="@drawable/image_1"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/image_2" />
+        app:layout_constraintVertical_bias="0.5" />
+
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:text="Shiba Inu Toy"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintHorizontal_bias="0.057"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/view_pager" />
 
     <RatingBar
         android:id="@+id/ratingBar"
-        style="@style/CustomRatingBar"
-        android:layout_width="200dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="242dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="4dp"
         android:isIndicator="true"
         android:numStars="5"
@@ -93,34 +83,47 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-    <Button
-        android:id="@+id/btnShowDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="236dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.293"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tvPriceLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="GIÁ:"
-        android:textSize="30dp"
-        tools:layout_editor_absoluteX="17dp"
-        tools:layout_editor_absoluteY="404dp" />
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/ratingBar"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="Gấu bông"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/btnShowDescription"
+        android:layout_width="130dp"
+        android:layout_height="31dp"
+        android:layout_marginBottom="252dp"
+        android:backgroundTint="@drawable/custon_button_rounded_selected_state"
+        android:text="Thông tin"
+        android:textSize="9sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.231"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <Button
         android:id="@+id/btnShowReviews"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="31dp"
         android:layout_marginStart="24dp"
-        android:layout_marginBottom="236dp"
-        android:text="Button"
+        android:layout_marginBottom="252dp"
+        android:backgroundTint="@drawable/custom_button_rouded"
+        android:text="Đánh giá"
+        android:textSize="9sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -128,29 +131,117 @@
 
     <FrameLayout
         android:id="@+id/flFragment"
-        android:layout_width="293dp"
-        android:layout_height="131dp"
-        android:layout_marginBottom="100dp"
+        android:layout_width="409dp"
+        android:layout_height="138dp"
+        android:layout_marginBottom="112dp"
         android:layout_weight="1"
+        android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout="@layout/fragment_product_description_"/>
+        tools:layout="@layout/fragment_product_description_" />
 
-    <!--    <Button-->
-<!--        android:id="@+id/button"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Button"-->
-<!--        tools:layout_editor_absoluteX="70dp"-->
-<!--        tools:layout_editor_absoluteY="448dp" />-->
+    <TextView
+        android:id="@+id/tvProductPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:text="300.000VND"
+        android:textSize="30sp"
+        app:layout_constraintStart_toEndOf="@+id/tvPriceLabel"
+        app:layout_constraintTop_toTopOf="@+id/tvPriceLabel" />
 
-<!--    <Button-->
-<!--        android:id="@+id/button2"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Button"-->
-<!--        tools:layout_editor_absoluteX="248dp"-->
-<!--        tools:layout_editor_absoluteY="448dp" />-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/flFragment">
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/layout_border"
+            android:elevation="8dp"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btnIncrement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/white"
+                android:src="@drawable/minus_30px"
+                tools:layout_editor_absoluteX="101dp"
+
+                tools:layout_editor_absoluteY="47dp" />
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:text="2"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/btnDecrement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/white"
+                android:src="@drawable/plus_math_30px"
+
+                tools:layout_editor_absoluteX="301dp"
+                tools:layout_editor_absoluteY="47dp" />
+
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="51dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="28dp"
+
+
+            android:layout_marginBottom="32dp"
+            android:background="@color/white"
+            android:src="@drawable/add_shopping_cart_50px"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="115dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginBottom="28dp"
+            android:backgroundTint="@color/main_color"
+            android:text="Mua ngay"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageButton" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

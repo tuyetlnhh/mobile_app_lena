@@ -47,4 +47,9 @@ dependencies {
 
     // Circle image view
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    //Cardview
+    implementation 'androidx.cardview:cardview:1.0.0'
+    //
+    implementation("com.tbuonomo:dotsindicator:4.3")
+
 }

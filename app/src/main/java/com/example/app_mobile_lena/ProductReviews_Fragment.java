@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -15,7 +18,6 @@ import android.view.ViewGroup;
  */
 public class ProductReviews_Fragment extends Fragment {
 
-
     public ProductReviews_Fragment() {
         // Required empty public constructor
     }
@@ -23,14 +25,37 @@ public class ProductReviews_Fragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_product_reviews_, container, false);
+        View contentView = inflater.inflate(R.layout.fragment_product_reviews_, container, false);
+        int[] userProfileIds = {R.drawable.image_1,R.drawable.image_2,R.drawable.image_3};
+        String[] userNames = {"John","Shane","Violet"};
+        String[] userComments = {"Lmao dep vai lon vay","Cung binh thuong nhung gia re","Hihihi"};
+        double[] userRatings = {3,3.5,4};
+        String[] dates = {"11:23 3/3/2020","11:24 3/4/2021","6/9/2015"};
+        ArrayList<ReviewModel> reviews = new ArrayList<>();
+
+        for(int i = 0 ; i<userNames.length;i++){
+            reviews.add(
+                    new ReviewModel(
+                            userRatings[i],
+                            dates[i],
+                            userProfileIds[i],
+                            userNames[i],
+                            userComments[i]
+                    ));
+        }
+
+        ReviewAdapter reviewAdapter = new ReviewAdapter(contentView.getContext(),reviews);
+
+        ListView listReviews = contentView.findViewById(R.id.lvProductReviews);
+        listReviews.setAdapter(reviewAdapter);
+        return contentView;
     }
 }
