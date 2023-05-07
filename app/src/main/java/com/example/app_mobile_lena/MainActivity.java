@@ -57,5 +57,6 @@ public class MainActivity extends AppCompatActivity {
             viewPager.setCurrentItem(position);
             return true;
         });
+
     }
 }
