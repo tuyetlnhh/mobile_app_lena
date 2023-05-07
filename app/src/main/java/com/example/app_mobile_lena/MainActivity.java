@@ -20,6 +20,7 @@ import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class MainActivity extends AppCompatActivity {
     private ViewPager2 view;
 
@@ -56,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
             viewPager.setCurrentItem(position);
             return true;
         });
-
 
     }
 }
