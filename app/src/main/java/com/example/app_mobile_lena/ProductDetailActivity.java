@@ -11,18 +11,31 @@ import android.widget.RatingBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
+
+import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProductDetailActivity extends AppCompatActivity {
+    private ViewPager viewPager;
+    private DotsIndicator dotsIndicator;
+    private ImageAdapter imageAdapter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_detail);
 
         Button btnShowDescription = findViewById(R.id.btnShowDescription);
         Button btnShowReview = findViewById(R.id.btnShowReviews);
+
+        viewPager = findViewById(R.id.view_pager);
+        imageAdapter = new ImageAdapter(this,getListPhoto());
+        viewPager.setAdapter(imageAdapter);
+        dotsIndicator = (DotsIndicator) findViewById(R.id.dots_indicator);
+        dotsIndicator.attachTo(viewPager);
         RatingBar ratingBar = findViewById(R.id.ratingBar);
-        ratingBar.setRating(3.5f);
+        ratingBar.setRating(5f);
         btnShowReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,5 +58,14 @@ public class ProductDetailActivity extends AppCompatActivity {
             }
         });
 
+    }
+    private List<ProductImage> getListPhoto() {
+        List<ProductImage> list = new ArrayList<>();
+        list.add(new ProductImage(R.drawable.image_1));
+        list.add(new ProductImage(R.drawable.image_2));
+        list.add(new ProductImage(R.drawable.image_3));
+        list.add(new ProductImage(R.drawable.image_4));
+
+        return list;
     }
 }

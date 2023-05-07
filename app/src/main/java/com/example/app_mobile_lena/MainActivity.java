@@ -12,9 +12,17 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
 
+
+import com.google.android.material.tabs.TabLayout;
+import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity {
     private ViewPager2 view;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
             viewPager.setCurrentItem(position);
             return true;
         });
-
 
 
     }
