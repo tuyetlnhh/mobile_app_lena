@@ -50,6 +50,7 @@ public class account_fragment extends Fragment {
         return fragment;
     }
 
+    Button btnLogin;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -66,7 +67,15 @@ public class account_fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_account, container, false);
+        btnLogin = (Button) view.findViewById(R.id.btnLogin);
 
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ProductDetailActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }
