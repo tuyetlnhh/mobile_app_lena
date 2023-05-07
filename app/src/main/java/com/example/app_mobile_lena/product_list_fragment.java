@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 
@@ -76,6 +77,12 @@ public class product_list_fragment extends Fragment {
         int[] price = {150000, 200000, 120000, 60000, 430000};
         GridAdapter grid = new GridAdapter(context, name, img, price_sale, price);
         gview.setAdapter(grid);
+        gview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Handle the item click here
+            }
+        });
         return view;
     }
 }

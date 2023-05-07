@@ -3,7 +3,7 @@
     <string name="len">LEN</string>
     <string name="logoA">A</string>
     <string name="hintSearch">Bạn đang cần tìm sản phẩm gì ?</string>
-    <string name = "btnMore">Xem thêm</string>
+    <string name="btnMore">Xem thêm</string>
 
     <string name="btnBackDescription">Comeback to main store</string>
     <string name="taoTK"><u>TẠO TÀI KHOẢN</u></string>
@@ -21,8 +21,6 @@
     <string name="liked_tab">Yêu Thích</string>
     <string name="profile_tab">Hồ Sơ</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
 
 
 </resources>
