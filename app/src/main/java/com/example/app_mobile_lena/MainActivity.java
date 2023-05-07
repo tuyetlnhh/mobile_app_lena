@@ -32,9 +32,18 @@ import java.util.List;
 import com.google.android.material.tabs.TabLayout;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
+
+    private ViewPager viewPager;
+    private DotsIndicator dotsIndicator;
+    private ImageAdapter imageAdapter;
+=======
     private ViewPager2 view;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +52,47 @@ public class MainActivity extends AppCompatActivity {
 
         Button btnShowDescription = findViewById(R.id.btnShowDescription);
         Button btnShowReview = findViewById(R.id.btnShowReviews);
-
+        viewPager = findViewById(R.id.view_pager);
+        imageAdapter = new ImageAdapter(this,getListPhoto());
+        viewPager.setAdapter(imageAdapter);
+        dotsIndicator = (DotsIndicator) findViewById(R.id.dots_indicator);
+        dotsIndicator.attachTo(viewPager);
         RatingBar ratingBar = findViewById(R.id.ratingBar);
         ratingBar.setRating(5f);
+
+
+        btnShowReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnShowDescription.setBackgroundTintList(ColorStateList.valueOf(R.drawable.custon_button_rounded_selected_state));
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.flFragment, new ProductReviews_Fragment());
+                fragmentTransaction.commit();
+            }
+        });
+        btnShowDescription.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnShowReview.setBackgroundTintList(ColorStateList.valueOf(R.drawable.custom_button_rouded));
+
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.flFragment, new ProductReviews_Fragment());
+                fragmentTransaction.commit();
+            }
+        });
+
+
+    }
+    private List<ProductImage> getListPhoto(){
+        List<ProductImage> list = new ArrayList<>();
+        list.add(new ProductImage(R.drawable.image_1));
+        list.add(new ProductImage(R.drawable.image_2));
+        list.add(new ProductImage(R.drawable.image_3));
+        list.add(new ProductImage(R.drawable.image_4));
+
+        return list;
 
         setContentView(R.layout.activity_main);
 
@@ -78,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
             viewPager.setCurrentItem(position);
             return true;
         });
+
 
 
 
