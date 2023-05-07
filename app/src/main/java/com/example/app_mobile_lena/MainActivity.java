@@ -32,6 +32,28 @@ public class MainActivity extends AppCompatActivity {
         RatingBar ratingBar = findViewById(R.id.ratingBar);
         ratingBar.setRating(5f);
 
+        btnShowReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnShowDescription.setBackgroundTintList(ColorStateList.valueOf(R.drawable.custon_button_rounded_selected_state));
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.flFragment, new ProductReviews_Fragment());
+                fragmentTransaction.commit();
+            }
+        });
+        btnShowDescription.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnShowReview.setBackgroundTintList(ColorStateList.valueOf(R.drawable.custom_button_rouded));
+
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.flFragment, new ProductReviews_Fragment());
+                fragmentTransaction.commit();
+            }
+        });
+
 
     }
 }
