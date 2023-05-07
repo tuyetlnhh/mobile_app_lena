@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(new home_frament());
         fragments.add(new product_list_fragment());
+        fragments.add(new qr_fragment());
+        fragments.add(new favourite_fragment());
+        fragments.add(new account_fragment());
         ViewPager2 viewPager = findViewById(R.id.view);
         MyAdapter adapter = new MyAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
         viewPager.setAdapter(adapter);
