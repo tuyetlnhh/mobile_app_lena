@@ -7,6 +7,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.AnimationTypes;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.models.SlideModel;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +66,15 @@ public class home_frament extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        ImageSlider imageSlider = view.findViewById(R.id.imageSlider);
+        ArrayList<SlideModel> slideModels = new ArrayList<>();
+        slideModels.add(new SlideModel(R.drawable.slider0, ScaleTypes.CENTER_CROP));
+        slideModels.add(new SlideModel(R.drawable.slider1, ScaleTypes.CENTER_CROP));
+        slideModels.add(new SlideModel(R.drawable.slider2, ScaleTypes.CENTER_CROP));
+        slideModels.add(new SlideModel(R.drawable.slider3, ScaleTypes.CENTER_CROP));
+        imageSlider.setSlideAnimation(AnimationTypes.ZOOM_OUT);
+        imageSlider.setImageList(slideModels, ScaleTypes.FIT);
+        return view;
     }
 }
