@@ -5,15 +5,18 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import com.denzcoskun.imageslider.ImageSlider;
-import com.denzcoskun.imageslider.constants.AnimationTypes;
-import com.denzcoskun.imageslider.constants.ScaleTypes;
-import com.denzcoskun.imageslider.models.SlideModel;
+import android.widget.Button;
+import android.widget.ImageButton;
+
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -67,14 +70,35 @@ public class home_frament extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        ImageSlider imageSlider = view.findViewById(R.id.imageSlider);
-        ArrayList<SlideModel> slideModels = new ArrayList<>();
-        slideModels.add(new SlideModel(R.drawable.slider0, ScaleTypes.CENTER_CROP));
-        slideModels.add(new SlideModel(R.drawable.slider1, ScaleTypes.CENTER_CROP));
-        slideModels.add(new SlideModel(R.drawable.slider2, ScaleTypes.CENTER_CROP));
-        slideModels.add(new SlideModel(R.drawable.slider3, ScaleTypes.CENTER_CROP));
-        imageSlider.setSlideAnimation(AnimationTypes.ZOOM_OUT);
-        imageSlider.setImageList(slideModels, ScaleTypes.FIT);
-        return view;
+        SliderView sliderView;
+        int[] images = {R.drawable.slider0,
+        R.drawable.slider1,
+        R.drawable.slider2,
+        R.drawable.slider3
+        };
+        sliderView = view.findViewById(R.id.image_slider);
+
+        SliderAdapter sliderAdapter = new SliderAdapter(images);
+
+        sliderView.setSliderAdapter(sliderAdapter);
+        sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);
+        sliderView.setSliderTransformAnimation(SliderAnimations.ZOOMOUTTRANSFORMATION);
+        sliderView.startAutoCycle();
+        ImageButton buttonNext = view.findViewById(R.id.btnRight);
+        ImageButton buttonPre = view.findViewById(R.id.btnLeft);
+        buttonNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sliderView.slideToNextPosition();
+            }
+        });
+        buttonPre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sliderView.slideToPreviousPosition();
+            }
+        });
+            return view;
     }
+
 }
