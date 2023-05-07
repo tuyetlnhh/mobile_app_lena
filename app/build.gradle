@@ -15,6 +15,9 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    viewBinding {
+        enabled = true
+    }
 
     buildTypes {
         release {
@@ -31,7 +34,7 @@ android {
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
@@ -42,8 +45,10 @@ dependencies {
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.15.1'
+
     //Dot indicator
     implementation("com.tbuonomo:dotsindicator:4.3")
+
 
     // Circle image view
     implementation 'de.hdodenhof:circleimageview:3.1.0'
@@ -51,5 +56,11 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     //
     implementation("com.tbuonomo:dotsindicator:4.3")
+
+
+    //bottom navigation
+    implementation 'com.aurelhubert:ahbottomnavigation:2.3.4'
+    implementation 'com.github.denzcoskun:ImageSlideshow:0.1.2'
+
 
 }
