@@ -71,11 +71,11 @@ public class home_frament extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         SliderView sliderView;
-        int[] images = {R.drawable.slider0,
-        R.drawable.slider1,
-        R.drawable.slider2,
-        R.drawable.slider3
-        };
+        int[] images = { R.drawable.slider0,
+            R.drawable.slider1,
+            R.drawable.slider2,
+            R.drawable.slider3
+            };
         sliderView = view.findViewById(R.id.image_slider);
 
         SliderAdapter sliderAdapter = new SliderAdapter(images);
