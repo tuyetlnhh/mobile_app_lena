@@ -1,5 +1,6 @@
 package com.example.app_mobile_lena;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +69,43 @@ public class wool_product_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_wool_product, container, false);
+        View view = inflater.inflate(R.layout.fragment_wool_product, container, false);
+        ListView listView = view.findViewById(R.id.list_view);
+
+// Create an array of data to display
+        String[] items = {"Áo", "Gấu Bông", "Móc Khóa", "Phụ Kiện", "Hoa"};
+        Context context = getContext();
+
+// Create an adapter to populate the ListView with the data
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, items);
+
+// Set the adapter for the ListView
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Handle click event for item at position
+                product_list_fragment fragment = new product_list_fragment();
+
+               View home_view = inflater.inflate(R.layout.activity_main, container, false);
+               ViewPager2 viewPager2 = getView().findViewById(R.id.home_view);
+               FragmentStateAdapter adapter = (FragmentStateAdapter) viewPager2.getAdapter();
+                int currentPosition = viewPager2.getCurrentItem();
+                Fragment fragmentToAdd = adapter.createFragment(currentPosition);
+
+                FragmentManager parentFragmentManager = getParentFragmentManager();
+                FragmentTransaction transaction = parentFragmentManager.beginTransaction();
+                transaction.add(R.id.home_view, fragmentToAdd);
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+
+
+            }
+        });
+
+
+        return view;
     }
 }

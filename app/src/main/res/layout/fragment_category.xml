@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".category_fragment">
+    tools:context=".category_fragment"
+    android:id="@+id/category_fragment">
 
     <LinearLayout
         android:id="@+id/search_bar"
@@ -53,10 +55,13 @@
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabMode="fixed"
-        app:tabGravity="fill"
+        android:background="@color/white"
         android:contentDescription="tab_layout"
-        android:background="@color/white">
+        app:tabGravity="fill"
+        app:tabIndicatorColor="#FF6868"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/main_color"
+        app:tabTextColor="@color/black">
 
     </com.google.android.material.tabs.TabLayout>
 

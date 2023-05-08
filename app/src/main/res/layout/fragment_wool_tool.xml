@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/txtAo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -26,7 +26,7 @@
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/textView16"
+            android:id="@+id/txtGau"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -38,7 +38,7 @@
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/textView20"
+            android:id="@+id/txtMoc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -50,7 +50,7 @@
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/textView21"
+            android:id="@+id/txtPK"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
