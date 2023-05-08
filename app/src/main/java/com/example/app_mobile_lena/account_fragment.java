@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,6 +48,7 @@ public class account_fragment extends Fragment {
         return fragment;
     }
 
+    Button btnPreLogin;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -66,7 +65,15 @@ public class account_fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_account, container, false);
+        btnPreLogin = (Button) view.findViewById(R.id.btnPreLogin);
 
+        btnPreLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), pre_login.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }
