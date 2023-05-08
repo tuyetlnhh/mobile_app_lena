@@ -5,7 +5,9 @@
     <string name="hintSearch">Bạn đang cần tìm sản phẩm gì ?</string>
     <string name="btnMore">Xem thêm</string>
 
+
     <string name = "hintQR">Bạn có thể quét mã vạch của một sản phẩm để kiểm tra màu sắc, kích cỡ, và số lượng hàng có sẵn.</string>
+
 
     <string name="btnBackDescription">Comeback to main store</string>
     <string name="taoTK"><u>TẠO TÀI KHOẢN</u></string>
@@ -21,8 +23,11 @@
     <string name="liked_tab">Yêu Thích</string>
     <string name="profile_tab">Hồ Sơ</string>
     <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_pre_login">pre_login</string>
 
+    <string name="hintFav">Thêm sản phẩm vào danh sách mong muốn và kiểm tra giá cùng với thông tin về hàng tồn kho</string>
+    <string name="numFav">CÓ 0 SẢN PHẨM TRONG DANH SÁCH MONG MUỐN</string>
 
 </resources>

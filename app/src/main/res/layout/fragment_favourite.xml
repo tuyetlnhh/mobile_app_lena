@@ -1,14 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".favourite_fragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/nav_bar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="FAVOURITE FRAGMENT" />
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="10dp">
 
-</FrameLayout>
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:contentDescription="Back"
+            app:srcCompat="@drawable/left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:text="YÊU THÍCH"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="10pt">
+
+        </TextView>
+        <ImageButton
+            android:id="@+id/cart"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:contentDescription="Cart"
+            app:srcCompat="@drawable/shop_cart" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:src="@drawable/fav"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.261" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.117" >
+        <TextView
+            android:id="@+id/numFav"
+            android:layout_width="wrap_content"
+            android:textAlignment= "center"
+            android:textSize="7pt"
+            android:padding="2dp"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@string/numFav" />
+        <TextView
+            android:id="@+id/hintFav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:textSize="7pt"
+            android:backgroundTint="@color/red"
+            android:textAlignment= "center"
+            android:text="@string/hintFav" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

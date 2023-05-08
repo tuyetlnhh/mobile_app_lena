@@ -19,13 +19,14 @@
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:background="@color/white"
         android:contentDescription="@string/btnBackDescription"
         android:padding="12dp"
         android:src="@drawable/back_30px"
         />
+
 
         <LinearLayout
             android:layout_weight="8"
@@ -33,6 +34,21 @@
             android:layout_height="wrap_content"
             android:gravity="right"
             android:orientation="horizontal">
+
+    <ImageButton
+        android:id="@+id/btnGoToCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:contentDescription="@string/btnBackDescription"
+        android:padding="12dp"
+        android:src="@drawable/shopping_cart_30px"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/btnShareProduct"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
             <ImageButton
                 android:id="@+id/btnGoToCart"
@@ -59,8 +75,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:orientation="vertical"
         android:layout_gravity="center">
+
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:contentDescription="@string/btnBackDescription"
+        android:padding="12dp"
+        android:src="@drawable/share_30px"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.77"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
