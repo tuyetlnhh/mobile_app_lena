@@ -5,7 +5,7 @@
     <string name="hintSearch">Bạn đang cần tìm sản phẩm gì ?</string>
     <string name="btnMore">Xem thêm</string>
 
-    <string name = "hintQR">Bạn có thể quét mã vạch của một sản phẩm để kiểm tra màu sắc, kích cỡ, và số lượng hàng có sẵn.</string>
+    <string name="hintQR">Bạn có thể quét mã vạch của một sản phẩm để kiểm tra màu sắc, kích cỡ, và số lượng hàng có sẵn.</string>
 
     <string name="btnBackDescription">Comeback to main store</string>
     <string name="taoTK"><u>TẠO TÀI KHOẢN</u></string>
