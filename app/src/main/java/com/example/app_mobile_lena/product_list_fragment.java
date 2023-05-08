@@ -1,6 +1,7 @@
 package com.example.app_mobile_lena;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,12 +9,17 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.text.Layout;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.window.SplashScreen;
 
 
 /**
@@ -70,6 +76,14 @@ public class product_list_fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_product_list, container, false);
         gview = view.findViewById(R.id.grid_view);
+        gview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                Intent intent = new Intent(getActivity(), ProductDetailActivity.class);
+                startActivity(intent);
+            }
+        });
         String[] name = {"chó","mèo","cáo","chồn","Hổ"};
         Context context = getContext();
         int[] img = {R.drawable.image_1,R.drawable.image_2,R.drawable.image_3,R.drawable.image_4,R.drawable.image_4};
@@ -85,4 +99,5 @@ public class product_list_fragment extends Fragment {
         });
         return view;
     }
+
 }

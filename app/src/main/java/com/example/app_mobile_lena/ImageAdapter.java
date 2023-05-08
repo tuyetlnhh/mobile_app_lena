@@ -10,56 +10,51 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.bumptech.glide.Glide;
+
+import java.util.List;
+
 public class ImageAdapter extends PagerAdapter {
-    @Override
-    public int getCount() {
-        return 0;
-    }
-
-    @Override
-    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-        return false;
-    }
-
-    public class ViewAdapter extends PagerAdapter {
-
         private Context context;
-        private LayoutInflater layoutInflater;
-        private Integer[] images={R.drawable.image_2,R.drawable.image_2,R.drawable.image_3,R.drawable.image_4};
 
-        public ViewAdapter(Context context)
-        {
-            this.context=context;
+        public ImageAdapter(Context context, List<ProductImage> mListProductImage) {
+            this.context = context;
+            this.mListProductImage = mListProductImage;
         }
-        @Override
-        public int getCount() {
-            return images.length;
-        }
+        private List<ProductImage> mListProductImage;
+        private LayoutInflater layoutInflater;
 
         @Override
         public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
             return view==object;
         }
 
-        @NonNull
-        @Override
-        public Object instantiateItem(@NonNull ViewGroup container, int position) {
-            layoutInflater=(LayoutInflater) context.getSystemService(
-                    Context.LAYOUT_INFLATER_SERVICE
-            );
-            View view =layoutInflater.inflate(R.layout.product_image_item,null);
-            ImageView imageView=view.findViewById(R.id.image_view);
-            imageView.setImageResource(images[position]);
-            ViewPager viewPager=(ViewPager) container;
-            viewPager.addView(view,0);
+    @Override
+    public int getCount() {
+                return mListProductImage.size();
+
+    }
+
+    @NonNull
+    @Override
+    public Object instantiateItem(@NonNull ViewGroup container, int position) {
+            View view = LayoutInflater.from(container.getContext()).inflate(R.layout.product_image_item,container,false);
+            ImageView img = view.findViewById(R.id.image_view);
+
+            ProductImage image = mListProductImage.get(position);
+            if(image != null) {
+                Glide.with(context).load(image.getResourceId()).into(img);
+            }
+
+            //Add view to viewgroup
+            container.addView(view);
+
             return view;
         }
-
         @Override
         public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-            ViewPager viewPager=(ViewPager) container;
-            View view=(View) object;
-            viewPager.removeView(view);
+            container.removeView((View) object);
+
         }
-    }
+
 }

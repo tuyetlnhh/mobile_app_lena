@@ -13,5 +13,7 @@
 
     <color name="red">#FF6666</color>
     <color name = 'lavender'>#8692f7</color>
+    <color name="lightGrey">#9F9C90</color>
+    <color name="duskYellow">#FFC107</color>
 
 </resources>

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/intro</item>
+    </style>
     <style name="len">
         <item name="android:textSize">50sp</item>
         <item name="android:letterSpacing">-0.01</item>
@@ -27,5 +30,9 @@
         <item name="android:progressDrawable">@drawable/ratingbar</item>
         <item name="android:minHeight">25dp</item>
         <item name="android:maxHeight">40dp</item>
+    </style>
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/lightGrey</item>
+        <item name="colorControlActivated">@color/duskYellow</item>
     </style>
 </resources>

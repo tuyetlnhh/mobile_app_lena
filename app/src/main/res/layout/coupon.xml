@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#DADADA"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:contentDescription="@string/btnBackDescription"
+                    android:padding="12dp"
+                    android:src="@drawable/back_30px"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/cart"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingStart="15dp"
+                    android:text="GIỎ HÀNG"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textCoupon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:text="ÁP DỤNG PHIẾU GIẢM GIÁ"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textLabelCoupon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="NHẬP MÃ PHIẾU GIẢM GIÁ"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/editTextCoupon"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="Nhập mã phiếu giảm giá"
+                        android:inputType="textShortMessage"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textColorHint="#959595" />
+
+                    <Button
+                        android:id="@+id/btnAdd"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:backgroundTint="#dcdcdc"
+                        android:text="THÊM"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ffffff"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textCouponAvailable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PHIẾU GIẢM GIÁ CÓ SẴN"
+                        android:textColor="#000000"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/textCouponAvailableQuantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="(2)"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#ffffff"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/couponImage1"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/icon_coupon_30per"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:srcCompat="@drawable/icon_coupon_30per" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginStart="20dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textCouponName1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Coupon chào mừng bạn mới"
+                            android:textColor="#000000"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/textCouponExpDate1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Ngày hết hạn: 31/05/2023"
+                            android:textColor="#000000"
+                            android:textSize="16sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginVertical="10dp"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/btnSelect1"
+                                android:layout_width="90dp"
+                                android:layout_height="match_parent"
+                                android:backgroundTint="#ffffff"
+                                android:text="CHỌN"
+                                android:textColor="#000000"
+                                android:textSize="16sp" />
+
+                            <Button
+                                android:id="@+id/btnDetail1"
+                                android:layout_width="110dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="15dp"
+                                android:backgroundTint="#ffffff"
+                                android:text="CHI TIẾT"
+                                android:textColor="#000000"
+                                android:textSize="16sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#fff"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/couponImage2"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/icon_coupon_10per"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:srcCompat="@drawable/icon_coupon_10per" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginStart="20dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textCouponName2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Coupon sốc tháng 5 ưu đãi khách hàng"
+                            android:textColor="#000000"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textCouponExpDate2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Ngày hết hạn: 31/05/2023"
+                            android:textColor="#000000"
+                            android:textSize="16sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginVertical="10dp"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/btnSelect2"
+                                android:layout_width="90dp"
+                                android:layout_height="match_parent"
+                                android:backgroundTint="#ffffff"
+                                android:text="CHỌN"
+                                android:textColor="#000000"
+                                android:textSize="16sp" />
+
+                            <Button
+                                android:id="@+id/btnDetail2"
+                                android:layout_width="110dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="15dp"
+                                android:backgroundTint="#ffffff"
+                                android:text="CHI TIẾT"
+                                android:textColor="#000000"
+                                android:textSize="16sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ffffff"
+                    android:layout_marginTop="30dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnCancel"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#ffffff"
+                        android:text="HỦY"
+                        android:textColor="#000000"
+                        android:textSize="20sp" />
+
+                    <Button
+                        android:id="@+id/btnApply"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#dcdcdc"
+                        android:text="ÁP DỤNG"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
