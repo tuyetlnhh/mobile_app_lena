@@ -8,59 +8,9 @@
     <!-- TODO: Update blank fragment layout -->
 
 
-    <LinearLayout
+    <ListView
+        android:id="@+id/list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/txtAo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/bottom_border"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:text="Len"
-            android:textColor="#000000"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/txtGau"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/bottom_border"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:text="Cây Móc"
-            android:textColor="#000000"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/txtMoc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/bottom_border"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:text="Phụ Kiện"
-            android:textColor="#000000"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/txtPK"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/bottom_border"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:text="Khác"
-            android:textColor="#000000"
-            android:textSize="24sp" />
-
-    </LinearLayout>
+        android:layout_height="match_parent" />
 
 </FrameLayout>

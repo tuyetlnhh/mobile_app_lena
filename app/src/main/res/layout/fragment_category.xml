@@ -61,9 +61,9 @@
         app:tabIndicatorColor="#FF6868"
         app:tabMode="fixed"
         app:tabSelectedTextColor="@color/main_color"
-        app:tabTextColor="@color/black">
+        app:tabTextColor="@color/black"/>
 
-    </com.google.android.material.tabs.TabLayout>
+
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager_category"

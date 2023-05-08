@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.fragment.app.Fragment;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
@@ -16,11 +18,24 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements wool_product_fragment.OnListItemClickListener, wool_tool_fragment.OnListItemClickListener {
 
     private ViewPager2 view;
+    private Fragment[] mainView = {new home_frament(), new category_fragment(), new qr_fragment(), new favourite_fragment(), new account_fragment()};
+    @Override
+    public void onListItemClick(int position) {
+        // Change the fragment
+        mainView[1] = new product_list_fragment();
+        List<Fragment> fragments = new ArrayList<>(Arrays.asList(mainView));
+        ViewPager2 viewPager = findViewById(R.id.home_view);
+        MyAdapter adapter = new MyAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
+        viewPager.setAdapter(adapter);
+        viewPager.setCurrentItem(1);
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,12 +64,16 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigation.addItem(item3);
         bottomNavigation.addItem(item4);
         bottomNavigation.addItem(item5);
-        List<Fragment> fragments = new ArrayList<>();
-        fragments.add(new home_frament());
-        fragments.add(new category_fragment());
-        fragments.add(new qr_fragment());
-        fragments.add(new favourite_fragment());
-        fragments.add(new account_fragment());
+//        List<Fragment> fragments = new ArrayList<>();
+//        fragments.add(new home_frament());
+//        fragments.add(new category_fragment());
+//        fragments.add(new qr_fragment());
+//        fragments.add(new favourite_fragment());
+//        fragments.add(new account_fragment());
+        List<Fragment> fragments = new ArrayList<>(Arrays.asList(mainView));
+
+
+
         ViewPager2 viewPager = findViewById(R.id.home_view);
         MyAdapter adapter = new MyAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
         viewPager.setAdapter(adapter);

@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
@@ -19,7 +20,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
  * Use the {@link category_fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class category_fragment extends Fragment {
+public class category_fragment extends Fragment   {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
