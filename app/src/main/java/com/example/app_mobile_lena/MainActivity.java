@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.fragment.app.Fragment;
 
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
 
@@ -18,6 +21,7 @@ import android.widget.RatingBar;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,13 +30,22 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements wool_product_fragment.OnListItemClickListener, wool_tool_fragment.OnListItemClickListener, product_list_fragment.OnButtonClickListener {
     private ViewPager2 view;
+    private home_frament homeFragment= new home_frament();
+    private category_fragment cateFrag = new category_fragment();
+    private qr_fragment qrFrag = new qr_fragment();
+    private favourite_fragment favFrag = new favourite_fragment();
+    private account_fragment accFrag = new account_fragment();
+    private product_list_fragment listFrag = new product_list_fragment();
 
-    private Fragment[] mainView = {new home_frament(), new category_fragment(), new qr_fragment(), new favourite_fragment(), new account_fragment()};
+    private Fragment[] mainView = {homeFragment, cateFrag, qrFrag, favFrag, accFrag};
+    private final Fragment[] stackFragment = {};
     @Override
     public void onListItemClick(int position) {
         // Change the fragment
-        mainView[1] = new product_list_fragment();
+
+
         List<Fragment> fragments = new ArrayList<>(Arrays.asList(mainView));
+        fragments.set(1, listFrag);
         ViewPager2 viewPager = findViewById(R.id.home_view);
         MyAdapter adapter = new MyAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
         viewPager.setAdapter(adapter);
@@ -41,12 +54,16 @@ public class MainActivity extends AppCompatActivity implements wool_product_frag
     }
     @Override
     public void onButtonClick() {
-        mainView[1] = new category_fragment();
+
         List<Fragment> fragments = new ArrayList<>(Arrays.asList(mainView));
+        fragments.set(1, cateFrag);
         ViewPager2 viewPager = findViewById(R.id.home_view);
         MyAdapter adapter = new MyAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(1);
+
+
+
     }
 
 

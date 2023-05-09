@@ -78,6 +78,7 @@ public class wool_tool_fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_wool_tool, container, false);
+        view.requestFocus();
         ListView listView = view.findViewById(R.id.list_view);
 
 // Create an array of data to display

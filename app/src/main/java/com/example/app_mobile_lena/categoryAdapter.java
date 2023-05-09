@@ -8,6 +8,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 public class categoryAdapter extends FragmentStateAdapter {
     private String[] titles = new String[] {"Sản Phẩm Từ Len", "Dụng Cụ Len"};
+    private wool_product_fragment prodFrag = new wool_product_fragment();
+    private wool_tool_fragment toolFrag = new wool_tool_fragment();
     public categoryAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
