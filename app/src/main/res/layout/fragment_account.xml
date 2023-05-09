@@ -10,12 +10,13 @@
     <TextView
         android:id="@+id/textView14"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
+        android:gravity="center"
         android:padding="10dp"
         android:text="THÀNH VIÊN"
         android:textAlignment="center"
         android:textColor="#000000"
-        android:textSize="20sp"
+        android:textSize="10pt"
         android:textStyle="bold" />
 
     <ScrollView
