@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -83,6 +84,7 @@ public class wool_product_fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_wool_product, container, false);
+        view.requestFocus();
         ListView listView = view.findViewById(R.id.list_view);
 
 // Create an array of data to display
@@ -109,4 +111,6 @@ public class wool_product_fragment extends Fragment {
 
         return view;
     }
+
+
 }

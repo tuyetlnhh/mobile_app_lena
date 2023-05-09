@@ -3,8 +3,10 @@ package com.example.app_mobile_lena;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -39,7 +41,13 @@ public class category_fragment extends Fragment   {
     public category_fragment() {
         // Required empty public constructor
     }
-
+    protected void finalize() throws Throwable {
+        try {
+            // perform some cleanup operations or any other necessary tasks here
+        } finally {
+            super.finalize();
+        }
+    }
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -82,4 +90,6 @@ public class category_fragment extends Fragment   {
 
         return view;
     }
+
+
 }

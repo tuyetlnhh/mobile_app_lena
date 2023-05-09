@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.widget.ViewPager2;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,6 +23,9 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.window.SplashScreen;
+
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 
 /**
@@ -85,7 +89,13 @@ public class product_list_fragment extends Fragment {
         super.onCreate(savedInstanceState);
 
     }
-
+    public void finalize() throws Throwable {
+        try {
+            // perform some cleanup operations or any other necessary tasks here
+        } finally {
+            super.finalize();
+        }
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
