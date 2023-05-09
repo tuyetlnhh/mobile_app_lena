@@ -35,7 +35,6 @@
             android:gravity="right"
             android:orientation="horizontal">
 
-
             <ImageButton
                 android:id="@+id/btnGoToCart"
                 android:layout_width="wrap_content"
@@ -64,7 +63,6 @@
 
         android:orientation="vertical"
         android:layout_gravity="center">
-
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
@@ -256,5 +254,6 @@
            />
 </LinearLayout>
 </LinearLayout>
+
 </ScrollView>
 
