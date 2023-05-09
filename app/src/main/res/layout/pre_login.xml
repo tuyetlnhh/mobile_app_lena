@@ -6,14 +6,12 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
         <ImageButton
-            android:id="@+id/imageButton4"
+            android:id="@+id/btBack"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_marginStart="10dp"
@@ -31,7 +29,7 @@
             android:text="CÀI ĐẶT HỒ SƠ"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="20sp"
+            android:textSize="10pt"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
