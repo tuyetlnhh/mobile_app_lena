@@ -36,7 +36,7 @@ public class ProductReviews_Fragment extends Fragment {
         View contentView = inflater.inflate(R.layout.fragment_product_reviews_, container, false);
         int[] userProfileIds = {R.drawable.image_1,R.drawable.image_2,R.drawable.image_3};
         String[] userNames = {"John","Shane","Violet"};
-        String[] userComments = {"Lmao dep vai lon vay","Cung binh thuong nhung gia re","Hihihi"};
+        String[] userComments = {"San pham tot, toi rat thich no","Cung binh thuong nhung gia re","hihi hehe haha"};
         double[] userRatings = {3,3.5,4};
         String[] dates = {"11:23 3/3/2020","11:24 3/4/2021","6/9/2015"};
         ArrayList<ReviewModel> reviews = new ArrayList<>();

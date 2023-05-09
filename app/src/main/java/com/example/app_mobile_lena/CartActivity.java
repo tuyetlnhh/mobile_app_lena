@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
@@ -19,6 +20,7 @@ public class CartActivity extends AppCompatActivity {
 
         Button btnGoToPayment = findViewById(R.id.btnPay);
         LinearLayout ll = findViewById(R.id.llCoupon);
+        ImageButton btnBack = findViewById(R.id.btnGoBack);
 
         btnGoToPayment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,6 +36,13 @@ public class CartActivity extends AppCompatActivity {
                 Intent intent = new Intent(view.getContext(),CouponActivity.class);
                 startActivity(intent);
 
+            }
+        });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 

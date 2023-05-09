@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
@@ -18,14 +18,11 @@
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginEnd="10dp">
-        <ImageButton
-            android:id="@+id/btnBack"
-            android:layout_width="0dp"
+
+        <Space
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/white"
-            android:contentDescription="Back"
-            app:srcCompat="@drawable/left" />
+            android:layout_weight="1" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -39,7 +36,7 @@
 
         </TextView>
         <ImageButton
-            android:id="@+id/cart"
+            android:id="@+id/btnCart"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

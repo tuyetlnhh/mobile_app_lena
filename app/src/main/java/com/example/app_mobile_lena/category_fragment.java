@@ -1,6 +1,7 @@
 package com.example.app_mobile_lena;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -79,6 +81,15 @@ public class category_fragment extends Fragment   {
         viewPager2.setAdapter(adapter);
         new TabLayoutMediator(tabLayout, viewPager2,((tab, position)->tab.setText(titles[position]))).attach();
 
+        ImageButton btnCart = view.findViewById(R.id.btnCart);
+
+        btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CartActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }
