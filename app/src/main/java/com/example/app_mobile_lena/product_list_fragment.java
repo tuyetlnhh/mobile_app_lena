@@ -107,13 +107,21 @@ public class product_list_fragment extends Fragment {
         GridAdapter grid = new GridAdapter(context, name, img, price_sale, price);
         gview.setAdapter(grid);
         ImageButton backButton = view.findViewById(R.id.backButton);
+        ImageButton btnCart = view.findViewById(R.id.btnCart);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mListener.onButtonClick();
-
             }
         });
+        btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CartActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 

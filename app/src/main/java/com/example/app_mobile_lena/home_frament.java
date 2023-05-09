@@ -1,5 +1,6 @@
 package com.example.app_mobile_lena;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -86,6 +87,7 @@ public class home_frament extends Fragment {
         sliderView.startAutoCycle();
         ImageButton buttonNext = view.findViewById(R.id.btnRight);
         ImageButton buttonPre = view.findViewById(R.id.btnLeft);
+        ImageButton btnCart = view.findViewById(R.id.btnCart);
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,7 +100,16 @@ public class home_frament extends Fragment {
                 sliderView.slideToPreviousPosition();
             }
         });
-            return view;
+
+        btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CartActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        return view;
     }
 
 }
