@@ -16,7 +16,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.window.SplashScreen;
@@ -45,6 +47,20 @@ public class product_list_fragment extends Fragment {
         // Required empty public constructor
     }
 
+    public interface OnButtonClickListener {
+        void onButtonClick();
+    }
+
+    private OnButtonClickListener mListener;
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof OnButtonClickListener) {
+            mListener = (OnButtonClickListener) context;
+        } else {
+            throw new RuntimeException(context.toString() + " must implement OnButtonClickListener");
+        }
+    }
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -90,6 +106,14 @@ public class product_list_fragment extends Fragment {
         int[] price = {150000, 200000, 120000, 60000, 430000};
         GridAdapter grid = new GridAdapter(context, name, img, price_sale, price);
         gview.setAdapter(grid);
+        ImageButton backButton = view.findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onButtonClick();
+
+            }
+        });
         return view;
     }
 

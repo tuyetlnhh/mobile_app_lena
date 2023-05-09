@@ -24,7 +24,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity implements wool_product_fragment.OnListItemClickListener, wool_tool_fragment.OnListItemClickListener {
+public class MainActivity extends AppCompatActivity implements wool_product_fragment.OnListItemClickListener, wool_tool_fragment.OnListItemClickListener, product_list_fragment.OnButtonClickListener {
     private ViewPager2 view;
 
     private Fragment[] mainView = {new home_frament(), new category_fragment(), new qr_fragment(), new favourite_fragment(), new account_fragment()};
@@ -39,6 +39,16 @@ public class MainActivity extends AppCompatActivity implements wool_product_frag
         viewPager.setCurrentItem(1);
 
     }
+    @Override
+    public void onButtonClick() {
+        mainView[1] = new category_fragment();
+        List<Fragment> fragments = new ArrayList<>(Arrays.asList(mainView));
+        ViewPager2 viewPager = findViewById(R.id.home_view);
+        MyAdapter adapter = new MyAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
+        viewPager.setAdapter(adapter);
+        viewPager.setCurrentItem(1);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,4 +89,6 @@ public class MainActivity extends AppCompatActivity implements wool_product_frag
         });
 
     }
+
+
 }

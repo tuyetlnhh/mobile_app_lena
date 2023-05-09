@@ -35,7 +35,7 @@
             android:gravity="right"
             android:orientation="horizontal">
 
-            <ImageButton
+<ImageButton
                 android:id="@+id/btnGoToCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -63,6 +63,7 @@
 
         android:orientation="vertical"
         android:layout_gravity="center">
+
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
@@ -233,7 +234,7 @@
         <ImageButton
             android:layout_weight="1"
 
-            android:id="@+id/imageButton"
+            android:id="@+id/backButton"
             android:layout_width="51dp"
             android:layout_height="46dp"
             android:layout_marginStart="28dp"
