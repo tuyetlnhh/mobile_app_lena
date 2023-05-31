@@ -1,6 +1,7 @@
 package com.example.app_mobile_lena;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.fragment.app.Fragment;
@@ -13,6 +14,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.content.Context;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
@@ -21,11 +23,20 @@ import android.widget.RatingBar;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.ktx.Firebase;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity implements wool_product_fragment.OnListItemClickListener, wool_tool_fragment.OnListItemClickListener, product_list_fragment.OnButtonClickListener {
@@ -35,31 +46,33 @@ public class MainActivity extends AppCompatActivity implements wool_product_frag
     private qr_fragment qrFrag = new qr_fragment();
     private favourite_fragment favFrag = new favourite_fragment();
     private account_fragment accFrag = new account_fragment();
-    private product_list_fragment listFrag = new product_list_fragment();
 
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     private Fragment[] mainView = {homeFragment, cateFrag, qrFrag, favFrag, accFrag};
     private final Fragment[] stackFragment = {};
     @Override
-    public void onListItemClick(int position) {
-        // Change the fragment
-
-
+    public void onListItemClick(int position, String titles) {
+//         Change the fragment
         List<Fragment> fragments = new ArrayList<>(Arrays.asList(mainView));
+        product_list_fragment listFrag = new product_list_fragment(titles);
         fragments.set(1, listFrag);
         ViewPager2 viewPager = findViewById(R.id.home_view);
         MyAdapter adapter = new MyAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
         viewPager.setAdapter(adapter);
+
         viewPager.setCurrentItem(1);
+
 
     }
     @Override
     public void onButtonClick() {
-
         List<Fragment> fragments = new ArrayList<>(Arrays.asList(mainView));
         fragments.set(1, cateFrag);
         ViewPager2 viewPager = findViewById(R.id.home_view);
         MyAdapter adapter = new MyAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
         viewPager.setAdapter(adapter);
+
         viewPager.setCurrentItem(1);
 
 
@@ -71,7 +84,27 @@ public class MainActivity extends AppCompatActivity implements wool_product_frag
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // Create a new user with a first and last name
+        Map<String, Object> user = new HashMap<>();
+        user.put("first", "Ada");
+        user.put("last", "Lovelace");
+        user.put("born", 1815);
 
+// Add a new document with a generated ID
+        db.collection("users")
+                .add(user)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d("vc", "DocumentSnapshot added with ID: " + documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("ok", "Error adding document", e);
+                    }
+                });
         AHBottomNavigation bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);
 
 // Create items
@@ -106,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements wool_product_frag
         });
 
     }
+
 
 
 }

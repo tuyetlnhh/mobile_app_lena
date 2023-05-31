@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "882793572261",
+    "project_id": "app-mobile-lena-8b4d6",
+    "storage_bucket": "app-mobile-lena-8b4d6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:882793572261:android:2638decd44d030f4ac6a4c",
+        "android_client_info": {
+          "package_name": "com.example.app_mobile_lena"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEsj4zPTfj5uNmXcWwnSqwB-AQ0zGMLxI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

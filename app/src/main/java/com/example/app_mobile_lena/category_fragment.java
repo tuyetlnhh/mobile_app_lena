@@ -10,12 +10,15 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -74,6 +77,14 @@ public class category_fragment extends Fragment   {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
+    public void onPause() {
+
+        super.onPause();
+
+
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
