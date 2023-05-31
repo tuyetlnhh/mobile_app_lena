@@ -22,6 +22,7 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.window.SplashScreen;
 
 import com.google.android.material.tabs.TabLayout;
@@ -43,12 +44,16 @@ public class product_list_fragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private String titles;
     private GridView gview;
 
 
     public product_list_fragment() {
         // Required empty public constructor
+    }
+
+    public product_list_fragment(String titles){
+        this.titles = titles;
     }
 
     public interface OnButtonClickListener {
@@ -111,6 +116,8 @@ public class product_list_fragment extends Fragment {
         });
         String[] name = {"chó","mèo","cáo","chồn","Hổ"};
         Context context = getContext();
+        TextView txtTitles = view.findViewById(R.id.txtTitle);
+        txtTitles.setText(this.titles);
         int[] img = {R.drawable.image_1,R.drawable.image_2,R.drawable.image_3,R.drawable.image_4,R.drawable.image_4};
         int[] price_sale = {150000, 200000, 120000, 60000, 430000};
         int[] price = {150000, 200000, 120000, 60000, 430000};

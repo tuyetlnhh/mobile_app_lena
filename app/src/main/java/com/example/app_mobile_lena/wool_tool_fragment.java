@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,7 @@ import android.widget.ListView;
  */
 public class wool_tool_fragment extends Fragment {
     public interface OnListItemClickListener {
-        void onListItemClick(int position);
+        void onListItemClick(int position, String titles);
     }
     private wool_product_fragment.OnListItemClickListener mListener;
     @Override
@@ -41,11 +42,15 @@ public class wool_tool_fragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private String titles;
 
     public wool_tool_fragment() {
         // Required empty public constructor
     }
 
+    public wool_tool_fragment(String titles){
+        this.titles = titles;
+    }
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -72,7 +77,35 @@ public class wool_tool_fragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("TAG", "tool resume");
+        View view = getView();
+        if(view != null){
+            ListView listView = view.findViewById(R.id.list_view);
+            String[] items = {"Len", "Cây Móc", "Phụ Kiện", "Khác"};
+            Context context = getContext();
 
+// Create an adapter to populate the ListView with the data
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, items);
+
+// Set the adapter for the ListView
+            listView.setAdapter(adapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    String titles = items[position];
+                    if (mListener != null) {
+                        mListener.onListItemClick(position,titles);
+                    }
+
+                }
+            });
+        }
+
+
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -94,9 +127,9 @@ public class wool_tool_fragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                String titles = items[position];
                 if (mListener != null) {
-                    mListener.onListItemClick(position);
+                    mListener.onListItemClick(position, titles);
                 }
 
             }

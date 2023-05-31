@@ -2,6 +2,7 @@ package com.example.app_mobile_lena;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
+import java.util.zip.Inflater;
 
 
 /**
@@ -25,16 +27,21 @@ import androidx.viewpager2.widget.ViewPager2;
  */
 public class wool_product_fragment extends Fragment {
     public interface OnListItemClickListener {
-        void onListItemClick(int position);
+        void onListItemClick(int position, String titles);
     }
     private OnListItemClickListener mListener;
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         if (context instanceof OnListItemClickListener) {
+            Log.d("TAG", "hello");
             mListener = (OnListItemClickListener) context;
         } else {
+            Log.d("TAG", "must implement OnListItemClickListener");
             throw new RuntimeException(context.toString() + " must implement OnListItemClickListener");
+
+
+
         }
     }
 
@@ -80,9 +87,39 @@ public class wool_product_fragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("TAG", "product_resume");
+        View view = getView();
+        if(view != null){
+            ListView listView = view.findViewById(R.id.list_view);
+            String[] items = {"Áo", "Gấu Bông", "Móc Khóa", "Phụ Kiện", "Hoa"};
+            Context context = getContext();
+
+// Create an adapter to populate the ListView with the data
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, items);
+
+// Set the adapter for the ListView
+            listView.setAdapter(adapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    String titles = items[position];
+                    if (mListener != null) {
+                        mListener.onListItemClick(position,titles);
+                    }
+
+                }
+            });
+        }
+
+
+    }
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_wool_product, container, false);
         view.requestFocus();
         ListView listView = view.findViewById(R.id.list_view);
@@ -100,9 +137,9 @@ public class wool_product_fragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                String titles = items[position];
                 if (mListener != null) {
-                    mListener.onListItemClick(position);
+                    mListener.onListItemClick(position, titles);
                 }
 
             }
