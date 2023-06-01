@@ -21,7 +21,7 @@ import android.widget.ListView;
  */
 public class wool_tool_fragment extends Fragment {
     public interface OnListItemClickListener {
-        void onListItemClick(int position, String titles);
+        void onListItemClick(int position, String titles, String category);
     }
     private wool_product_fragment.OnListItemClickListener mListener;
     @Override
@@ -43,14 +43,13 @@ public class wool_tool_fragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private String titles;
+    private String category;
 
     public wool_tool_fragment() {
         // Required empty public constructor
     }
 
-    public wool_tool_fragment(String titles){
-        this.titles = titles;
-    }
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -97,7 +96,7 @@ public class wool_tool_fragment extends Fragment {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     String titles = items[position];
                     if (mListener != null) {
-                        mListener.onListItemClick(position,titles);
+                        mListener.onListItemClick(position,titles,"tool");
                     }
 
                 }
@@ -128,8 +127,9 @@ public class wool_tool_fragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String titles = items[position];
+                Log.d("TAG", "titles: "+titles);
                 if (mListener != null) {
-                    mListener.onListItemClick(position, titles);
+                    mListener.onListItemClick(position, titles, "tool");
                 }
 
             }
