@@ -21,6 +21,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +30,13 @@ public class ProductDetailActivity extends AppCompatActivity {
     private DotsIndicator dotsIndicator;
     private ImageAdapter imageAdapter;
     private int defaultQuantity = 1;
+    private String name;
+    private String category;
+    private String image;
+    private Double price;
+    private Double sale_price;
+    private int quantity;
+    private String description;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_detail);
@@ -40,7 +48,23 @@ public class ProductDetailActivity extends AppCompatActivity {
         ImageButton btnBack = findViewById(R.id.btnBack);
         ImageButton btnGoToCart = findViewById(R.id.btnGoToCart);
         TextView tvQuantity = findViewById(R.id.tvQuantity);
+        TextView txtName = findViewById(R.id.txtName);
+        TextView txtPrice = findViewById(R.id.tvProductPrice);
+        Intent intent = getIntent();
+        items item = (items) intent.getSerializableExtra("item");
 
+        if (item != null) {
+            name = item.getName();
+            category = item.getCategory();
+            image = item.getImage();
+            price = item.getPrice();
+            sale_price = item.getSale_price();
+            description = item.getDescription();
+            Log.d("TAG",description);
+            txtName.setText(item.getName());
+            txtPrice.setText(addThousandSeparator(item.getPrice())+" VND");
+
+        }
 
         viewPager = findViewById(R.id.view_pager);
         imageAdapter = new ImageAdapter(this,getListPhoto());
@@ -79,10 +103,12 @@ public class ProductDetailActivity extends AppCompatActivity {
         btnShowDescription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 btnShowReview.setBackgroundTintList(ColorStateList.valueOf(R.drawable.custom_button_rouded));
 
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
                 fragmentTransaction.replace(R.id.flFragment, new ProductDescription_Fragment());
                 fragmentTransaction.commit();
             }
@@ -112,6 +138,10 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         return list;
     }
+    public String addThousandSeparator(Double number) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        return decimalFormat.format(number);
+    }
 
     private int increaseQuantity(){
         defaultQuantity++;
@@ -133,7 +163,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     private void initDescriptionFragment(){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.flFragment, new ProductDescription_Fragment());
+        fragmentTransaction.replace(R.id.flFragment, new ProductDescription_Fragment(description));
         fragmentTransaction.commit();
 
     }
