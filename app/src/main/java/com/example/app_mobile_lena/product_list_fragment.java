@@ -34,6 +34,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -119,6 +120,7 @@ public class product_list_fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        ArrayList<items> itemList = new ArrayList<>();
         Context context = getContext();
         Log.d("TAG", "category: " + this.category);
         // Inflate the layout for this fragment
@@ -135,12 +137,20 @@ public class product_list_fragment extends Fragment {
                             ArrayList<Double> price_sale = new ArrayList<>();
                             ArrayList<String> img = new ArrayList<>();
 
+
                             for (QueryDocumentSnapshot document : task.getResult()) {
+                                items item =  new items();
                                 Log.d("TAG", document.getId() + " => " + document.getData());
                                 name.add(document.getData().get("name").toString());
+                                item.setName(document.getData().get("name").toString());
                                 price.add(Double.valueOf(document.getData().get("price").toString()));
+                                item.setPrice(Double.valueOf(document.getData().get("price").toString()));
                                 price_sale.add(Double.valueOf(document.getData().get("sale_price").toString()));
+                                item.setSale_price(Double.valueOf(document.getData().get("sale_price").toString()));
                                 img.add(document.getData().get("image").toString());
+                                item.setImage(document.getData().get("image").toString());
+                                item.setDescription(document.getData().get("description").toString());
+                                itemList.add(item);
 
                             }
 
@@ -164,8 +174,10 @@ public class product_list_fragment extends Fragment {
 
         gview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Intent intent = new Intent(getActivity(), ProductDetailActivity.class);
+
+                intent.putExtra("item", itemList.get(position));
                 startActivity(intent);
             }
         });
