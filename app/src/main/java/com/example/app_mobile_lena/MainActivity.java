@@ -52,10 +52,10 @@ public class MainActivity extends AppCompatActivity implements wool_product_frag
     private Fragment[] mainView = {homeFragment, cateFrag, qrFrag, favFrag, accFrag};
     private final Fragment[] stackFragment = {};
     @Override
-    public void onListItemClick(int position, String titles) {
+    public void onListItemClick(int position, String titles, String category) {
 //         Change the fragment
         List<Fragment> fragments = new ArrayList<>(Arrays.asList(mainView));
-        product_list_fragment listFrag = new product_list_fragment(titles);
+        product_list_fragment listFrag = new product_list_fragment(titles, category);
         fragments.set(1, listFrag);
         ViewPager2 viewPager = findViewById(R.id.home_view);
         MyAdapter adapter = new MyAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
@@ -85,26 +85,7 @@ public class MainActivity extends AppCompatActivity implements wool_product_frag
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // Create a new user with a first and last name
-        Map<String, Object> user = new HashMap<>();
-        user.put("first", "Ada");
-        user.put("last", "Lovelace");
-        user.put("born", 1815);
 
-// Add a new document with a generated ID
-        db.collection("users")
-                .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("vc", "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("ok", "Error adding document", e);
-                    }
-                });
         AHBottomNavigation bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);
 
 // Create items
