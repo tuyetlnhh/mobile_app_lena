@@ -1,6 +1,8 @@
 package com.example.app_mobile_lena;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class items implements Serializable {
     private String name;
@@ -9,8 +11,9 @@ public class items implements Serializable {
     private Double price;
     private Double sale_price;
     private int quantity;
-
     private String description;
+    private ArrayList<String> slider;
+    private Double rate;
     items(){
         this.name = "";
         this.category = "";
@@ -19,6 +22,16 @@ public class items implements Serializable {
         this.sale_price = 0.0;
         this.quantity = 0;
         this.description = "";
+        this.rate = 0.0;
+        slider = new ArrayList<>();
+    }
+
+    public Double getRate() {
+        return rate;
+    }
+
+    public ArrayList<String> getSlider() {
+        return slider;
     }
 
     public String getDescription() {
@@ -75,5 +88,13 @@ public class items implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setSlider(ArrayList<String> slider) {
+        this.slider.addAll(slider);
+    }
+
+    public void setRate(Double rate) {
+        this.rate = rate;
     }
 }

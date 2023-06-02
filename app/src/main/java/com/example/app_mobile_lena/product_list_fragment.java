@@ -142,14 +142,18 @@ public class product_list_fragment extends Fragment {
                                 items item =  new items();
                                 Log.d("TAG", document.getId() + " => " + document.getData());
                                 name.add(document.getData().get("name").toString());
-                                item.setName(document.getData().get("name").toString());
                                 price.add(Double.valueOf(document.getData().get("price").toString()));
-                                item.setPrice(Double.valueOf(document.getData().get("price").toString()));
                                 price_sale.add(Double.valueOf(document.getData().get("sale_price").toString()));
-                                item.setSale_price(Double.valueOf(document.getData().get("sale_price").toString()));
                                 img.add(document.getData().get("image").toString());
+
+                                //add item
+                                item.setSale_price(Double.valueOf(document.getData().get("sale_price").toString()));
+                                item.setPrice(Double.valueOf(document.getData().get("price").toString()));
+                                item.setName(document.getData().get("name").toString());
                                 item.setImage(document.getData().get("image").toString());
                                 item.setDescription(document.getData().get("description").toString());
+                                item.setSlider((ArrayList<String>) document.getData().get("slider"));
+                                item.setRate(Double.valueOf(document.getData().get("rate").toString()));
                                 itemList.add(item);
 
                             }
@@ -167,8 +171,6 @@ public class product_list_fragment extends Fragment {
         gview = view.findViewById(R.id.grid_view);
         TextView txtTitles = view.findViewById(R.id.txtTitle);
         txtTitles.setText(this.titles);
-
-
 
 
 
