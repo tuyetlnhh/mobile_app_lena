@@ -1,6 +1,7 @@
 package com.example.app_mobile_lena;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,16 +13,18 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ImageAdapter extends PagerAdapter {
         private Context context;
+    private ArrayList<String> mListProductImage = new ArrayList<>();
 
-        public ImageAdapter(Context context, List<ProductImage> mListProductImage) {
+        public ImageAdapter(Context context, ArrayList<String> slider) {
             this.context = context;
-            this.mListProductImage = mListProductImage;
+            this.mListProductImage.addAll(slider);
         }
-        private List<ProductImage> mListProductImage;
+
         private LayoutInflater layoutInflater;
 
         @Override
@@ -38,18 +41,21 @@ public class ImageAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-            View view = LayoutInflater.from(container.getContext()).inflate(R.layout.product_image_item,container,false);
-            ImageView img = view.findViewById(R.id.image_view);
 
-            ProductImage image = mListProductImage.get(position);
-            if(image != null) {
-                Glide.with(context).load(image.getResourceId()).into(img);
-            }
+        View view = LayoutInflater.from(container.getContext()).inflate(R.layout.product_image_item,container,false);
+        ImageView img = view.findViewById(R.id.image_view);
 
-            //Add view to viewgroup
-            container.addView(view);
+        String image = mListProductImage.get(position);
+        Log.d("TAG", "Image: " + image);
+        if(image != null) {
 
-            return view;
+            Glide.with(context).load(image).into(img);
+        }
+
+        //Add view to viewgroup
+        container.addView(view);
+
+        return view;
         }
         @Override
         public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {

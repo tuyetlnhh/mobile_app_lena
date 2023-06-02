@@ -37,6 +37,8 @@ public class ProductDetailActivity extends AppCompatActivity {
     private Double sale_price;
     private int quantity;
     private String description;
+    private ArrayList<String> slider = new ArrayList<>();
+    private Double rate;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_detail);
@@ -60,6 +62,9 @@ public class ProductDetailActivity extends AppCompatActivity {
             price = item.getPrice();
             sale_price = item.getSale_price();
             description = item.getDescription();
+            slider.addAll(item.getSlider());
+            rate = item.getRate();
+            Log.d("TAG","SLIDER: " + slider.get(0));
             Log.d("TAG",description);
             txtName.setText(item.getName());
             txtPrice.setText(addThousandSeparator(item.getPrice())+" VND");
@@ -67,12 +72,12 @@ public class ProductDetailActivity extends AppCompatActivity {
         }
 
         viewPager = findViewById(R.id.view_pager);
-        imageAdapter = new ImageAdapter(this,getListPhoto());
+        imageAdapter = new ImageAdapter(this,slider);
         viewPager.setAdapter(imageAdapter);
         dotsIndicator = (DotsIndicator) findViewById(R.id.dots_indicator);
         dotsIndicator.attachTo(viewPager);
         RatingBar ratingBar = findViewById(R.id.ratingBar);
-        ratingBar.setRating(5f);
+        ratingBar.setRating(rate.floatValue());
 
         initDescriptionFragment();
 
