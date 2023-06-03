@@ -17,6 +17,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.zip.Inflater;
 
 
@@ -27,7 +33,7 @@ import java.util.zip.Inflater;
  */
 public class wool_product_fragment extends Fragment {
     public interface OnListItemClickListener {
-        void onListItemClick(int position, String titles);
+        void onListItemClick(int position, String titles, String category);
     }
     private OnListItemClickListener mListener;
     @Override
@@ -54,6 +60,7 @@ public class wool_product_fragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public wool_product_fragment() {
         // Required empty public constructor
@@ -106,7 +113,8 @@ public class wool_product_fragment extends Fragment {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     String titles = items[position];
                     if (mListener != null) {
-                        mListener.onListItemClick(position,titles);
+                        Log.d("TAG", "Im at product");
+                        mListener.onListItemClick(position,titles, "product");
                     }
 
                 }
@@ -124,6 +132,7 @@ public class wool_product_fragment extends Fragment {
         view.requestFocus();
         ListView listView = view.findViewById(R.id.list_view);
 
+
 // Create an array of data to display
         String[] items = {"Áo", "Gấu Bông", "Móc Khóa", "Phụ Kiện", "Hoa"};
         Context context = getContext();
@@ -139,7 +148,7 @@ public class wool_product_fragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String titles = items[position];
                 if (mListener != null) {
-                    mListener.onListItemClick(position, titles);
+                    mListener.onListItemClick(position, titles, "product");
                 }
 
             }

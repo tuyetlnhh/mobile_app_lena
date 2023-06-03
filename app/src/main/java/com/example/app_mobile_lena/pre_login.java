@@ -36,6 +36,7 @@ public class pre_login extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(pre_login.this, RegisterPage.class);
                 startActivity(intent);
+                finish();
             }
         });
 

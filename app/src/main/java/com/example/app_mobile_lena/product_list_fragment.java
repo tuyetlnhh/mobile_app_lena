@@ -12,6 +12,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,8 +26,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.window.SplashScreen;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 
 /**
@@ -45,15 +55,20 @@ public class product_list_fragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private String titles;
+    private String category;
     private GridView gview;
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
     public product_list_fragment() {
         // Required empty public constructor
     }
 
-    public product_list_fragment(String titles){
+    public product_list_fragment(String titles, String category){
+
         this.titles = titles;
+        this.category = category;
     }
 
     public interface OnButtonClickListener {
@@ -93,6 +108,7 @@ public class product_list_fragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
     }
     public void finalize() throws Throwable {
         try {
@@ -102,27 +118,73 @@ public class product_list_fragment extends Fragment {
         }
     }
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        ArrayList<items> itemList = new ArrayList<>();
+        Context context = getContext();
+        Log.d("TAG", "category: " + this.category);
         // Inflate the layout for this fragment
+        db.collection("items")
+                .whereEqualTo("category",this.category)
+                .whereArrayContains("tags",this.titles)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            ArrayList<String> name = new ArrayList<>();
+                            ArrayList<Double> price = new ArrayList<>();
+                            ArrayList<Double> price_sale = new ArrayList<>();
+                            ArrayList<String> img = new ArrayList<>();
+
+
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                items item =  new items();
+                                Log.d("TAG", document.getId() + " => " + document.getData());
+                                name.add(document.getData().get("name").toString());
+                                price.add(Double.valueOf(document.getData().get("price").toString()));
+                                price_sale.add(Double.valueOf(document.getData().get("sale_price").toString()));
+                                img.add(document.getData().get("image").toString());
+
+                                //add item
+                                item.setSale_price(Double.valueOf(document.getData().get("sale_price").toString()));
+                                item.setPrice(Double.valueOf(document.getData().get("price").toString()));
+                                item.setName(document.getData().get("name").toString());
+                                item.setImage(document.getData().get("image").toString());
+                                item.setDescription(document.getData().get("description").toString());
+                                item.setSlider((ArrayList<String>) document.getData().get("slider"));
+                                item.setRate(Double.valueOf(document.getData().get("rate").toString()));
+                                itemList.add(item);
+
+                            }
+
+                            GridAdapter grid = new GridAdapter(getContext(),name, img, price_sale,price );
+                            gview.setAdapter(grid);
+
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+
         View view = inflater.inflate(R.layout.fragment_product_list, container, false);
         gview = view.findViewById(R.id.grid_view);
+        TextView txtTitles = view.findViewById(R.id.txtTitle);
+        txtTitles.setText(this.titles);
+
+
+
         gview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Intent intent = new Intent(getActivity(), ProductDetailActivity.class);
+
+                intent.putExtra("item", itemList.get(position));
                 startActivity(intent);
             }
         });
-        String[] name = {"chó","mèo","cáo","chồn","Hổ"};
-        Context context = getContext();
-        TextView txtTitles = view.findViewById(R.id.txtTitle);
-        txtTitles.setText(this.titles);
-        int[] img = {R.drawable.image_1,R.drawable.image_2,R.drawable.image_3,R.drawable.image_4,R.drawable.image_4};
-        int[] price_sale = {150000, 200000, 120000, 60000, 430000};
-        int[] price = {150000, 200000, 120000, 60000, 430000};
-        GridAdapter grid = new GridAdapter(context, name, img, price_sale, price);
-        gview.setAdapter(grid);
+
+
         ImageButton backButton = view.findViewById(R.id.backButton);
         ImageButton btnCart = view.findViewById(R.id.btnCart);
         backButton.setOnClickListener(new View.OnClickListener() {
