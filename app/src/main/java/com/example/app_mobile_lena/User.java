@@ -1,11 +1,11 @@
 package com.example.app_mobile_lena;
 
-public class users {
+public class User {
     private String email;
     private String date;
     private String password;
     private  String gender;
-    users(){
+    User(){
         this.email = "";
         this.date = "";
         this.gender = "";
