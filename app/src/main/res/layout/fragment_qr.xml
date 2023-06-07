@@ -32,7 +32,7 @@
             android:gravity="center"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:textSize="10pt">
+            android:textSize="20sp">
 
         </TextView>
         <ImageButton
@@ -82,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/red"
                     android:text="QR Scan"
-                    android:textSize="9pt" />
+                    android:textSize="10sp" />
                 <TextView
                     android:id="@+id/hintQR"
                     android:layout_marginTop="20dp"
@@ -92,7 +92,7 @@
                     android:padding="5dp"
                     android:text="@string/hintQR"
                     android:textAlignment="center"
-                    android:textSize="8pt" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
     </LinearLayout>
