@@ -1,20 +1,29 @@
 package com.example.app_mobile_lena;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class items implements Serializable {
+public class Item implements Serializable {
+    private String key;
     private String name;
     private String category;
     private String image;
     private Double price;
     private Double sale_price;
-    private int quantity;
+    private long quantity;
     private String description;
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
     private ArrayList<String> slider;
     private Double rate;
-    items(){
+    Item(){
         this.name = "";
         this.category = "";
         this.image = "";
@@ -46,7 +55,7 @@ public class items implements Serializable {
         return sale_price;
     }
 
-    public int getQuantity() {
+    public long getQuantity() {
         return quantity;
     }
 
@@ -78,7 +87,7 @@ public class items implements Serializable {
         this.price = price;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Long quantity) {
         this.quantity = quantity;
     }
 
