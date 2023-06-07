@@ -12,8 +12,11 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,12 +28,14 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.ktx.Firebase;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements wool_product_frag
 
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     private Fragment[] mainView = {homeFragment, cateFrag, qrFrag, favFrag, accFrag};
     private final Fragment[] stackFragment = {};
     @Override
@@ -84,6 +90,28 @@ public class MainActivity extends AppCompatActivity implements wool_product_frag
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences userPref = getSharedPreferences("CURRENT_USER", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        // khai bao bien islogin de check user loggin hay chua
+        boolean Islogin = prefs.getBoolean("Islogin", false);
+        String userObject = userPref.getString("userObject","");
+        Gson gson = new Gson();
+        User user = null;
+
+        if(!userObject.isEmpty()){
+            Islogin = true;
+            user = gson.fromJson(userObject,User.class);
+            editor.putBoolean("Islogin",Islogin).commit();
+
+            Log.d("I AM LOGGIN AS ", user.toString());
+
+        }
+        Log.d("I AM LOGGIN AS ", String.valueOf(Islogin));
+
+
+
+            // and get whatever type user account id is
         // Create a new user with a first and last name
 
         AHBottomNavigation bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);
@@ -107,7 +135,6 @@ public class MainActivity extends AppCompatActivity implements wool_product_frag
 //        fragments.add(new favourite_fragment());
 //        fragments.add(new account_fragment());
         List<Fragment> fragments = new ArrayList<>(Arrays.asList(mainView));
-
 
 
         ViewPager2 viewPager = findViewById(R.id.home_view);

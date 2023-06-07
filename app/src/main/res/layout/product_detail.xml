@@ -232,13 +232,10 @@
 
         <ImageButton
             android:layout_weight="1"
-
-            android:id="@+id/backButton"
+            android:id="@+id/btnAddToCart"
             android:layout_width="51dp"
             android:layout_height="46dp"
             android:layout_marginStart="28dp"
-
-
             android:background="@color/white"
             android:src="@drawable/add_shopping_cart_50px"
            />
