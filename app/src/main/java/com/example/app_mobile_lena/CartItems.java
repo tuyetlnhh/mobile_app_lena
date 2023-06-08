@@ -2,23 +2,55 @@ package com.example.app_mobile_lena;
 
 public class CartItems {
     private String productId;
-    private int quantity;
-    private int price;
 
-    public int getPrice() {
+    private String name;
+
+    private String category;
+
+    private String img;
+    private long quantity;
+    private double price;
+
+    public CartItems(String productId, String name, String category, String img, long quantity, double price) {
+        this.productId = productId;
+        this.name = name;
+        this.category = category;
+        this.img = img;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public double getPrice() {
         return price;
     }
 
     public void setPrice(int price) {
         this.price = price;
     }
-
-    public CartItems(String productId, int quantity, int price) {
-        this.productId = productId;
-        this.quantity = quantity;
-        this.price = price;
-    }
-
     public String getProductId() {
         return productId;
     }
@@ -27,11 +59,11 @@ public class CartItems {
         this.productId = productId;
     }
 
-    public int getQuantity() {
+    public long getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(long quantity) {
         this.quantity = quantity;
     }
 }

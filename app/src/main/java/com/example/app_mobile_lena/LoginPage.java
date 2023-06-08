@@ -57,10 +57,11 @@ import java.util.ArrayList;
                 if(task.isSuccessful()){
                     for(DocumentSnapshot documentSnapshot : task.getResult()){
                         if(email.equals(documentSnapshot.getString("email"))){
+                            Gson gson = new Gson();
                             String email = documentSnapshot.getString("email");
                             String password = documentSnapshot.getString("password");
                             String dob = documentSnapshot.getString("dob");
-                            ArrayList<Object> cart =  (ArrayList<Object>) documentSnapshot.get("cart");
+                            ArrayList<CartItems> cart =  (ArrayList<CartItems>) documentSnapshot.get("cart");
                             user.setEmail(email);
                             user.setPassword(password);
                             user.setID(documentSnapshot.getId());
@@ -69,7 +70,6 @@ import java.util.ArrayList;
                             Intent intent = new Intent(LoginPage.this,MainActivity.class);
                             SharedPreferences sharedPref = getSharedPreferences("CURRENT_USER",MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPref.edit();
-                            Gson gson = new Gson();
                             String userStr = gson.toJson(user);
                             Log.d("USER LOGGED IN",userStr);
                             editor.putString("userObject",userStr);

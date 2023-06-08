@@ -10,13 +10,13 @@ public class User implements Serializable {
     private String date;
     private String password;
     private  String gender;
-    private ArrayList<Object> cart = new ArrayList<Object>();
+    private ArrayList<CartItems> cart = new ArrayList<CartItems>();
 
-    public ArrayList<Object> getCart() {
+    public ArrayList<CartItems> getCart() {
         return cart;
     }
 
-    public void setCart(ArrayList<Object> cart) {
+    public void setCart(ArrayList<CartItems> cart) {
         this.cart = cart;
     }
 
