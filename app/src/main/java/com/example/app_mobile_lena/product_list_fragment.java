@@ -5,37 +5,24 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.viewpager2.widget.ViewPager2;
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.window.SplashScreen;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 
 /**
@@ -119,6 +106,7 @@ public class product_list_fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        ArrayList<Item> itemList = new ArrayList<>();
         Context context = getContext();
         Log.d("TAG", "category: " + this.category);
         // Inflate the layout for this fragment
@@ -134,13 +122,25 @@ public class product_list_fragment extends Fragment {
                             ArrayList<Double> price = new ArrayList<>();
                             ArrayList<Double> price_sale = new ArrayList<>();
                             ArrayList<String> img = new ArrayList<>();
-
                             for (QueryDocumentSnapshot document : task.getResult()) {
+                                Item item =  new Item();
                                 Log.d("TAG", document.getId() + " => " + document.getData());
                                 name.add(document.getData().get("name").toString());
                                 price.add(Double.valueOf(document.getData().get("price").toString()));
                                 price_sale.add(Double.valueOf(document.getData().get("sale_price").toString()));
                                 img.add(document.getData().get("image").toString());
+                                //add item
+                                item.setKey(document.getId());
+                                item.setSale_price(Double.valueOf(document.getData().get("sale_price").toString()));
+                                item.setPrice(Double.valueOf(document.getData().get("price").toString()));
+                                item.setName(document.getData().get("name").toString());
+                                item.setImage(document.getData().get("image").toString());
+                                item.setDescription(document.getData().get("description").toString());
+                                item.setSlider((ArrayList<String>) document.getData().get("slider"));
+                                item.setQuantity((Long) document.getData().get("quantity"));
+                                item.setRate(Double.valueOf(document.getData().get("rate").toString()));
+
+                                itemList.add(item);
 
                             }
 
@@ -150,6 +150,7 @@ public class product_list_fragment extends Fragment {
                         } else {
                             Log.w("TAG", "Error getting documents.", task.getException());
                         }
+
                     }
                 });
 
@@ -160,12 +161,11 @@ public class product_list_fragment extends Fragment {
 
 
 
-
-
         gview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Intent intent = new Intent(getActivity(), ProductDetailActivity.class);
+                intent.putExtra("item", itemList.get(position));
                 startActivity(intent);
             }
         });
