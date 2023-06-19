@@ -1,14 +1,21 @@
 package com.example.app_mobile_lena;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.google.gson.Gson;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,6 +56,9 @@ public class account_fragment extends Fragment {
     }
 
     Button btnPreLogin;
+    Button btnSignOut;
+    Gson gson = new Gson();
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,13 +77,24 @@ public class account_fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
         btnPreLogin = (Button) view.findViewById(R.id.btnLogout);
 
+
         btnPreLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), pre_login.class);
-                startActivity(intent);
+                SharedPreferences sharedPref = getContext().getSharedPreferences("CURRENT_USER", Context.MODE_PRIVATE);
+                if(sharedPref.getString("userObject",null) == null){
+                    Intent intent = new Intent(getActivity(), pre_login.class);
+                    startActivity(intent);
+                }
+                else{
+                    Intent intent = new Intent(getActivity(), account_setting.class);
+                    startActivity(intent);
+                }
+
             }
         });
+
+
 
         return view;
     }
