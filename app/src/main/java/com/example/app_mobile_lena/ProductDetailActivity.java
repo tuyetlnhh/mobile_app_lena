@@ -169,11 +169,11 @@ public class ProductDetailActivity extends AppCompatActivity {
                     // Duyet qua tung item trong cart
                     for(CartItems cartItems : currentUserCart){
                             if(cartItems.getProductId() != null){
-                                Log.d("SET BACK QUANTITY", cartItems.toString());
+                                Log.d("GET ITEM", cartItems.toString());
 
                                 // Neu co item them vao trung voi item trong cart
                                 if(cartItems.getProductId().equals(item.getKey())){
-                                    Log.d("SET BACK QUANTITY", cartItems.toString());
+                                    Log.d("ITEM FOUND IN CART", cartItems.toString());
 
                                     // Item ton tai
                                     ITEM_EXISTED = true;
@@ -181,7 +181,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                                     long itemQuantityInCart = cartItems.getQuantity();
                                     // set so luong item trong cart = sl hien tai + sl them vao
                                     cartItems.setQuantity(itemQuantityInCart+addedQuantity);
-                                    Log.d("SET BACK QUANTITY", cartItems.toString());
+                                    Log.d("GET INFO OF CART ITEM", cartItems.toString());
 
                                 }
                             }
@@ -193,8 +193,9 @@ public class ProductDetailActivity extends AppCompatActivity {
                         updatedCart.add(addedItem);
                     }
                     Map<String, Object> docData = new HashMap<>();
-                    docData.put("cart", updatedCart);
                     user.setCart(updatedCart);
+                    docData.put("cart", updatedCart);
+                    docData.put("user",user);
                     Log.d("DONT PUT String", "IN IF STATEMENT");
                     db.collection("users").document(user.getID())
                             .set(docData)
