@@ -47,7 +47,7 @@
                     android:textStyle="bold" />
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/editAccount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#FFFFFF"
@@ -56,7 +56,7 @@
                     android:textColor="#000000" />
 
                 <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/changePassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#FFFFFF"
@@ -84,7 +84,7 @@
                     android:textStyle="bold" />
 
                 <Button
-                    android:id="@+id/btnPreLogin"
+                    android:id="@+id/btnLogout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#FFFFFF"

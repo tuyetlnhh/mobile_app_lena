@@ -45,15 +45,6 @@
                 android:padding="12dp"
                 android:src="@drawable/shopping_cart_30px" />
 
-            <ImageButton
-                android:id="@+id/btnShareProduct"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:background="@color/white"
-                android:contentDescription="@string/btnBackDescription"
-                android:padding="12dp"
-                android:src="@drawable/share_30px" />
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -244,7 +235,7 @@
            />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/editAccount"
             android:layout_width="115dp"
             android:layout_height="54dp"
             android:layout_marginStart="40dp"
