@@ -32,7 +32,7 @@
             android:gravity="center"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:textSize="10pt">
+            android:textSize="20sp">
 
         </TextView>
         <ImageButton
@@ -86,7 +86,7 @@
                     android:text="@string/numFav"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="7pt"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -98,7 +98,7 @@
                     android:backgroundTint="@color/red"
                     android:text="@string/hintFav"
                     android:textAlignment="center"
-                    android:textSize="7pt" />
+                    android:textSize="17sp" />
             </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
