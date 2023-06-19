@@ -68,6 +68,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Item item = (Item) intent.getSerializableExtra("item");
         SharedPreferences userPref = getSharedPreferences("CURRENT_USER", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = userPref.edit();
         String userObject = userPref.getString("userObject","");
         Gson gson = new Gson();
         if(!userObject.isEmpty()){
@@ -155,7 +156,6 @@ public class ProductDetailActivity extends AppCompatActivity {
         });
         User finalUser = user;
         btnAddToCart.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 Log.d("I AM IN IF STATEMENT", "IN IF STATEMENT");
@@ -193,8 +193,9 @@ public class ProductDetailActivity extends AppCompatActivity {
                         updatedCart.add(addedItem);
                     }
                     Map<String, Object> docData = new HashMap<>();
+                    // Set lại cart mới cho user
                     user.setCart(updatedCart);
-                    docData.put("cart", updatedCart);
+                    // Thêm lại user vào db cùng với cart mới
                     docData.put("user",user);
                     Log.d("DONT PUT String", "IN IF STATEMENT");
                     db.collection("users").document(user.getID())
@@ -213,8 +214,16 @@ public class ProductDetailActivity extends AppCompatActivity {
                             });
 
                 }
+                // Update lại user shared preference
+                String userStr = gson.toJson(user);
+                Log.d("USER UPDATED",userStr);
+                editor.putString("userObject",userStr);
+                editor.commit();
+                // Update xong thì cập nhật lại User
+                user = gson.fromJson(userPref.getString("userObject",""),User.class);
             }
         });
+
 
     }
     private List<ProductImage> getxListPhoto() {
