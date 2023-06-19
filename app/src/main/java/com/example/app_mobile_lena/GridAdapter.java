@@ -88,6 +88,17 @@ public class GridAdapter extends BaseAdapter {
 
         return convertView;
     }
+    public void updateData(ArrayList<String> name, ArrayList<String> img, ArrayList<Double> price_sale, ArrayList<Double> price) {
+        this.name.clear();
+        this.name.addAll(name);
+        this.img.clear();
+        this.img.addAll(img);
+        this.price_sale.clear();
+        this.price_sale.addAll(price_sale);
+        this.price.clear();
+        this.price.addAll(price);
+        notifyDataSetChanged();
+    }
 
 
 }
