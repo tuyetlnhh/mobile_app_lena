@@ -1,4 +1,4 @@
-    package com.example.app_mobile_lena;
+package com.example.app_mobile_lena;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -28,6 +29,7 @@ import java.util.ArrayList;
     public class LoginPage extends AppCompatActivity {
 
     TextView tvForgetPassword;
+    ImageButton btnBack;
     EditText etEmail;
     EditText etPassword;
     Button btnLogin;
@@ -96,6 +98,8 @@ import java.util.ArrayList;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
+        btnBack = findViewById(R.id.btnBack);
+
         btnLogin = findViewById(R.id.btnLogin);
         etEmail = findViewById(R.id.editTextTextEmailAddress);
         etPassword = findViewById(R.id.editTextTextPassword);
@@ -115,6 +119,14 @@ import java.util.ArrayList;
                 String password = etPassword.getText().toString();
                 logIn(email,password);
             }
+        });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+
         });
     }
 }

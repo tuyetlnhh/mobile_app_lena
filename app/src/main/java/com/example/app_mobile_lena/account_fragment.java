@@ -65,7 +65,7 @@ public class account_fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_account, container, false);
-        btnPreLogin = (Button) view.findViewById(R.id.btnPreLogin);
+        btnPreLogin = (Button) view.findViewById(R.id.btnLogout);
 
         btnPreLogin.setOnClickListener(new View.OnClickListener() {
             @Override
