@@ -22,7 +22,7 @@ public class User implements Serializable {
         this.cart = cart;
     }
 
-    User(){
+    public User(){
         this.email = "";
         this.date = "";
         this.gender = "";
