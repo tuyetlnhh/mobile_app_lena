@@ -14,42 +14,6 @@
         android:orientation="horizontal"
         android:weightSum="10">
 
-        <TextView
-            android:id="@+id/txtID"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/history_id_background"
-            android:paddingLeft="5dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:text="#DH003"
-            android:textColor="#FFFFFF" />
-
-        <TextView
-            android:id="@+id/txtTemp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|end"
-            android:layout_weight="8"
-            android:text="" />
-
-        <TextView
-            android:id="@+id/txtStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:text="Hoàn Thành"
-            android:textColor="@color/main_color" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="10">
-
         <ImageView
             android:id="@+id/productImage"
             android:layout_width="wrap_content"
@@ -69,7 +33,7 @@
             android:paddingTop="35dp"
             android:paddingLeft="20dp"
 
-         >
+            >
 
             <TextView
                 android:id="@+id/txtProductName"
@@ -84,11 +48,6 @@
                 android:layout_height="wrap_content"
                 android:text="TextView" />
 
-            <TextView
-                android:id="@+id/txtProductPriceSale"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
         </LinearLayout>
 
     </LinearLayout>
