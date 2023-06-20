@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingLeft="10dp"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp"
-    android:weightSum="10">
+    android:padding = "10dp"
+    android:weightSum="10"
+    android:background="@drawable/bottom_border">
 
     <ImageView
         android:id="@+id/itemImage"
-        android:layout_width="120dp"
+        android:layout_width="149dp"
         android:layout_height="120dp"
-        android:layout_weight="4"
-        tools:srcCompat="@tools:sample/avatars"
-        android:scaleType="centerCrop"/>
+        android:layout_weight="2"
+        android:scaleType="centerCrop"
+        tools:srcCompat="@tools:sample/avatars" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="6"
         android:orientation="vertical"
-        android:paddingLeft="10dp"
+        android:paddingLeft="15dp"
         android:paddingTop="15dp">
 
         <TextView
@@ -40,7 +40,8 @@
             android:layout_height="wrap_content"
             android:text="150.000 VND"
             android:textColor="#FE897F"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/itemCate"
@@ -48,20 +49,20 @@
             android:layout_height="wrap_content"
             android:text="Thú Bông"
             android:textColor="#000000"
-            android:textSize="10sp" />
+            android:textSize="12sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp">
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/button4"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:text="-"
+                android:textColor="#FFFFFF" />
 
             <TextView
                 android:id="@+id/itemQuantity"

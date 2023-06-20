@@ -13,6 +13,18 @@
         android:theme="@style/Theme.App_Mobile_Lena"
         tools:targetApi="31">
         <activity
+            android:name=".orderHistoryItem"
+            android:exported="false" />
+        <activity
+            android:name=".orderHistory"
+            android:exported="false" />
+        <activity
+            android:name=".accountInformation"
+            android:exported="false" />
+        <activity
+            android:name=".changePassword"
+            android:exported="false" />
+        <activity
             android:name=".finishPayment"
             android:exported="false" />
         <activity
