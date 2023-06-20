@@ -97,8 +97,16 @@ public class account_fragment extends Fragment {
         btnOrderHis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), orderHistory.class);
-                startActivity(intent);
+                SharedPreferences sharedPref = getContext().getSharedPreferences("CURRENT_USER", Context.MODE_PRIVATE);
+                if(sharedPref.getString("userObject",null) == null){
+
+                    Intent intent = new Intent(getContext(), pre_login.class);
+                    startActivity(intent);
+                }
+                else{
+                    Intent intent = new Intent(getActivity(), orderHistory.class);
+                    startActivity(intent);
+                }
             }
         });
 

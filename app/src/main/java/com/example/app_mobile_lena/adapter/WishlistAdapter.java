@@ -1,6 +1,7 @@
 package com.example.app_mobile_lena.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,10 +27,12 @@ public class WishlistAdapter extends BaseAdapter {
     public WishlistAdapter(Context context, ArrayList<Item> item){
         this.context = context;
         this.wishlist.addAll(item);
+        Log.d("TAG","Item: " + wishlist.toString());
+        Log.d("TAG","Item: " + Integer.toString(wishlist.size()));
     }
     @Override
     public int getCount() {
-        return 0;
+        return wishlist.size();
     }
 
     public String addThousandSeparator(Double number) {
@@ -51,7 +54,7 @@ public class WishlistAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.wishlist_item, parent, false);
         }
-
+        Log.d("TAG","test thu");
         ImageView imgView = convertView.findViewById(R.id.itemImage);
         TextView txtName = convertView.findViewById(R.id.itemName);
         TextView txtPrice = convertView.findViewById(R.id.itemPrice);

@@ -10,15 +10,20 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 
 import com.example.app_mobile_lena.Cart_section.CartActivity;
+import com.example.app_mobile_lena.ProductDetail_section.ProductDetailActivity;
 import com.example.app_mobile_lena.R;
 import com.example.app_mobile_lena.adapter.SliderAdapter;
 import com.example.app_mobile_lena.Account_section.pre_login;
+import com.example.app_mobile_lena.model.Item;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
+
+import java.util.ArrayList;
 
 
 /**
@@ -36,6 +41,7 @@ public class home_frament extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private ArrayList<Item> items = new ArrayList<>();
 
     public home_frament() {
         // Required empty public constructor
@@ -81,7 +87,7 @@ public class home_frament extends Fragment {
             };
         sliderView = view.findViewById(R.id.image_slider);
 
-        SliderAdapter sliderAdapter = new SliderAdapter(images);
+        SliderAdapter sliderAdapter = new SliderAdapter(images,getContext());
 
         sliderView.setSliderAdapter(sliderAdapter);
         sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);
@@ -90,6 +96,7 @@ public class home_frament extends Fragment {
         ImageButton buttonNext = view.findViewById(R.id.btnRight);
         ImageButton buttonPre = view.findViewById(R.id.btnLeft);
         ImageButton btnCart = view.findViewById(R.id.btnCart);
+
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

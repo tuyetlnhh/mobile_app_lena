@@ -4,6 +4,7 @@ import com.example.app_mobile_lena.Cart_section.CartItems;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.UUID;
 
 public class Order implements Serializable {
@@ -27,7 +28,7 @@ public class Order implements Serializable {
 
     private ArrayList<CartItems> cartItems;
 
-    String randomId = "HD00" + Integer.toString(seed);
+    String randomId;
 
     public Order() {
     }
@@ -39,16 +40,29 @@ public class Order implements Serializable {
     public void setStatus(String status) {
         this.status = status;
     }
+    public static String generateRandomString(int length) {
+        String characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder sb = new StringBuilder();
+
+        Random random = new Random();
+        for (int i = 0; i < length; i++) {
+            int index = random.nextInt(characters.length());
+            char randomChar = characters.charAt(index);
+            sb.append(randomChar);
+        }
+
+        return sb.toString();
+    }
 
     public Order(String email, String phone, String total, String address, ArrayList<CartItems> cartItems,String status) {
-        this.Id = randomId;
+        this.Id = "HD"+ generateRandomString(6);
         this.email = email;
         this.phone = phone;
         this.total = total;
         this.address = address;
         this.cartItems = cartItems;
         this.status = status;
-        this.seed++;
+
     }
 
     public String getEmail() {

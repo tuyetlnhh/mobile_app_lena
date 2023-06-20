@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.app_mobile_lena.MainActivity;
 import com.example.app_mobile_lena.R;
 import com.example.app_mobile_lena.navbar_fragment.home_frament;
 
@@ -22,7 +23,7 @@ public class finishPayment extends AppCompatActivity {
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(finishPayment.this, home_frament.class);
+                Intent intent = new Intent(finishPayment.this, MainActivity.class);
                 startActivity(intent);
             }
         });
