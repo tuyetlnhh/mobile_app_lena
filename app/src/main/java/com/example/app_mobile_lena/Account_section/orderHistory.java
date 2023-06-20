@@ -124,14 +124,14 @@ public class orderHistory extends AppCompatActivity implements MyCallback {
                 Gson gson = new Gson();
 
                 Log.d("TAG", "evetList size: " + Integer.toString(eventList.size()));
-                orderList.addAll(eventList);
+                orderList = (ArrayList<Order>) eventList.clone();
                 Log.d("TAG", "Order list: " + eventList.toString());
                 for(Order i:orderList){
                     id.add(i.getId());
                     status.add(i.getStatus());
                     total.add(i.getTotal());
+                    Log.d("TAG",orderList.toString());
 //                    cartItems.add(i.getCartItems().get(0));
-                    Log.d("TAG", "Cart item: " +((CartItems) i.getCartItems().get(0)).toString());
 
                 }
 

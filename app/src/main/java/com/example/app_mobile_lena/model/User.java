@@ -14,6 +14,16 @@ public class User implements Serializable {
     private  String gender;
     private ArrayList<CartItems> cart = new ArrayList<CartItems>();
 
+    private ArrayList<Item> wishlist = new ArrayList<Item>();
+
+    public ArrayList<Item> getWishlist() {
+        return wishlist;
+    }
+
+    public void setWishlist(ArrayList<Item> wishlist) {
+        this.wishlist = wishlist;
+    }
+
     public ArrayList<CartItems> getCart() {
         return cart;
     }

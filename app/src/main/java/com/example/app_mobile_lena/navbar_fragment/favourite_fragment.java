@@ -7,14 +7,21 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ListView;
 
+import com.example.app_mobile_lena.Account_section.orderHistory;
 import com.example.app_mobile_lena.Cart_section.CartActivity;
 import com.example.app_mobile_lena.R;
 import com.example.app_mobile_lena.Account_section.pre_login;
+import com.example.app_mobile_lena.adapter.HistoryAdapter;
+import com.example.app_mobile_lena.adapter.WishlistAdapter;
+import com.example.app_mobile_lena.model.User;
+import com.google.gson.Gson;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -67,8 +74,9 @@ public class favourite_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_favourite, container, false);
+        View view = inflater.inflate(R.layout.fragment_wishlist, container, false);
         ImageButton btnCart = view.findViewById(R.id.btnCart);
+        ListView itemList = view.findViewById(R.id.list_view);
         btnCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,7 +92,20 @@ public class favourite_fragment extends Fragment {
 
             }
 
+
         });
+        SharedPreferences userPref = getContext().getSharedPreferences("CURRENT_USER", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = userPref.edit();
+        String userObject = userPref.getString("userObject","");
+        Gson gson = new Gson();
+        User user = null;
+        if(!userObject.isEmpty()){
+            user = gson.fromJson(userObject,User.class);
+            Log.d("I AM LOGGIN AS ", user.toString());
+        }
+        Log.d("TAG",user.getWishlist().get(4).getName().toString());
+        WishlistAdapter adapter = new WishlistAdapter(getContext(),user.getWishlist());
+        itemList.setAdapter(adapter);
 
         return view;
     }
