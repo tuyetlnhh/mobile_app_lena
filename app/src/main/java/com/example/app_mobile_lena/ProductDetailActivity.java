@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
+import android.media.metrics.Event;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -50,6 +51,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     private User user = null;
 
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_detail);
@@ -158,21 +160,26 @@ public class ProductDetailActivity extends AppCompatActivity {
         btnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("I AM IN IF STATEMENT", "IN IF STATEMENT");
-                long addedQuantity = Long.parseLong(tvQuantity.getText().toString());
-                ArrayList<CartItems> currentUserCart = (ArrayList<CartItems>) user.getCart().clone();
-                boolean ITEM_EXISTED = false;
-                if(item.getQuantity() > addedQuantity){
-                    Log.d("SET BACK QUANTITY", currentUserCart.toString());
-
+                if (userPref.getString("userObject", null) == null) {
+                    Intent intent = new Intent(getApplicationContext(), pre_login.class);
+                    startActivity(intent);
+                    finish();
+                } else {
                     Log.d("I AM IN IF STATEMENT", "IN IF STATEMENT");
-                    // Duyet qua tung item trong cart
-                    for(CartItems cartItems : currentUserCart){
-                            if(cartItems.getProductId() != null){
+                    long addedQuantity = Long.parseLong(tvQuantity.getText().toString());
+                    ArrayList<CartItems> currentUserCart = (ArrayList<CartItems>) user.getCart().clone();
+                    boolean ITEM_EXISTED = false;
+                    if (item.getQuantity() > addedQuantity) {
+                        Log.d("SET BACK QUANTITY", currentUserCart.toString());
+
+                        Log.d("I AM IN IF STATEMENT", "IN IF STATEMENT");
+                        // Duyet qua tung item trong cart
+                        for (CartItems cartItems : currentUserCart) {
+                            if (cartItems.getProductId() != null) {
                                 Log.d("GET ITEM", cartItems.toString());
 
                                 // Neu co item them vao trung voi item trong cart
-                                if(cartItems.getProductId().equals(item.getKey())){
+                                if (cartItems.getProductId().equals(item.getKey())) {
                                     Log.d("ITEM FOUND IN CART", cartItems.toString());
 
                                     // Item ton tai
@@ -180,47 +187,50 @@ public class ProductDetailActivity extends AppCompatActivity {
                                     // Lay so luong cua item trong cart hien tai
                                     long itemQuantityInCart = cartItems.getQuantity();
                                     // set so luong item trong cart = sl hien tai + sl them vao
-                                    cartItems.setQuantity(itemQuantityInCart+addedQuantity);
+                                    cartItems.setQuantity(itemQuantityInCart + addedQuantity);
                                     Log.d("GET INFO OF CART ITEM", cartItems.toString());
 
                                 }
                             }
-                    }
-                    ArrayList<CartItems> updatedCart = (ArrayList<CartItems>)currentUserCart.clone();
+                        }
+                        ArrayList<CartItems> updatedCart = (ArrayList<CartItems>) currentUserCart.clone();
 
-                    if(ITEM_EXISTED == false) {
-                        CartItems addedItem = new CartItems(item.getKey(),item.getName(),item.getCategory(), item.getImage(),addedQuantity,item.getPrice());
-                        updatedCart.add(addedItem);
-                    }
-                    Map<String, Object> docData = new HashMap<>();
-                    // Set lại cart mới cho user
-                    user.setCart(updatedCart);
-                    // Thêm lại user vào db cùng với cart mới
-                    docData.put("user",user);
-                    Log.d("DONT PUT String", "IN IF STATEMENT");
-                    db.collection("users").document(user.getID())
-                            .set(docData)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Log.d("TAG", "DocumentSnapshot successfully written!");
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.w("TAG", "Error writing document", e);
-                                }
-                            });
+                        if (ITEM_EXISTED == false) {
+                            CartItems addedItem = new CartItems(item.getKey(), item.getName(), item.getCategory(), item.getImage(), addedQuantity, item.getPrice());
+                            updatedCart.add(addedItem);
+                        }
+                        Map<String, Object> docData = new HashMap<>();
+                        // Set lại cart mới cho user
+                        user.setCart(updatedCart);
+                        // Thêm lại user vào db cùng với cart mới
+                        docData.put("cart", user.getCart());
+                        docData.put("email", user.getEmail());
+                        docData.put("password", user.getPassword());
+                        Log.d("DONT PUT String", "IN IF STATEMENT");
+                        db.collection("users").document(user.getID())
+                                .set(docData)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d("TAG", "DocumentSnapshot successfully written!");
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.w("TAG", "Error writing document", e);
+                                    }
+                                });
 
+                    }
+                    // Update lại user shared preference
+                    String userStr = gson.toJson(user);
+                    Log.d("USER UPDATED", userStr);
+                    editor.putString("userObject", userStr);
+                    editor.commit();
+                    // Update xong thì cập nhật lại User
+                    user = gson.fromJson(userPref.getString("userObject", ""), User.class);
                 }
-                // Update lại user shared preference
-                String userStr = gson.toJson(user);
-                Log.d("USER UPDATED",userStr);
-                editor.putString("userObject",userStr);
-                editor.commit();
-                // Update xong thì cập nhật lại User
-                user = gson.fromJson(userPref.getString("userObject",""),User.class);
             }
         });
 

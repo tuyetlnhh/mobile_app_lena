@@ -2,6 +2,8 @@ package com.example.app_mobile_lena;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Item implements Serializable {
     private String key;
@@ -23,6 +25,7 @@ public class Item implements Serializable {
 
     private ArrayList<String> slider;
     private Double rate;
+
     Item(){
         this.name = "";
         this.category = "";
@@ -106,4 +109,15 @@ public class Item implements Serializable {
     public void setRate(Double rate) {
         this.rate = rate;
     }
+
+    public void orderByName(ArrayList<Item> itemList){
+        Collections.sort(itemList, new Comparator<Item>() {
+            @Override
+            public int compare(Item item1, Item item2) {
+                return item1.getName().compareTo(item2.getName());
+            }
+        });
+    }
+
+
 }

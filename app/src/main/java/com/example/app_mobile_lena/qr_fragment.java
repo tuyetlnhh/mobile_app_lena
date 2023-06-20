@@ -8,14 +8,18 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
+
+
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link qr_fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class qr_fragment extends Fragment {
+public class qr_fragment extends Fragment   {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,6 +29,7 @@ public class qr_fragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
 
     public qr_fragment() {
         // Required empty public constructor
@@ -63,6 +68,7 @@ public class qr_fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_qr, container, false);
         ImageButton btnCart = view.findViewById(R.id.btnCart);
+        Button btnQR = view.findViewById(R.id.btnScan);
 
         btnCart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +78,18 @@ public class qr_fragment extends Fragment {
             }
         });
 
+        btnQR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), QRScanActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
+    }
+
+    void scanCode(){
+
     }
 }
