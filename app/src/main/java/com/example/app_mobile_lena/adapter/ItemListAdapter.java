@@ -20,25 +20,20 @@ import org.w3c.dom.Text;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class HistoryAdapter  extends BaseAdapter {
+public class ItemListAdapter  extends BaseAdapter {
     Context context;
-    ArrayList<String> id = new ArrayList<>();
-    ArrayList<String> status = new ArrayList<>();
-    ArrayList<String> total = new ArrayList<>();
+
     ArrayList<CartItems> item = new ArrayList<>();
     LayoutInflater inflater;
-    public HistoryAdapter(Context context, ArrayList<String> id, ArrayList<String>status, ArrayList<CartItems> item, ArrayList<String> total){
-        this.id.addAll(id);
-        this.status.addAll(status);
+    public ItemListAdapter(Context context, ArrayList<CartItems> item){
         this.context = context;
         this.item.addAll(item);
-        this.total.addAll(total);
     }
 
 
     @Override
     public int getCount(){
-        return id.size();
+        return item.size();
     }
 
     @Override
@@ -61,21 +56,16 @@ public class HistoryAdapter  extends BaseAdapter {
 
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.order_history_item, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_list, parent, false);
         }
 
-        ImageView imgView = convertView.findViewById(R.id.itemImage);
-        TextView txtName = convertView.findViewById(R.id.itemName);
-        TextView txtPrice = convertView.findViewById(R.id.itemPrice);
-        TextView txtCate = convertView.findViewById(R.id.itemCate);
-        TextView txtId = convertView.findViewById(R.id.invoiceID);
-        TextView txtStatus = convertView.findViewById(R.id.invoiceStatus);
+        ImageView imgView = convertView.findViewById(R.id.productImage);
+        TextView txtName = convertView.findViewById(R.id.txtProductName);
+        TextView txtPrice = convertView.findViewById(R.id.txtProductPrice);
 
-        txtId.setText(id.get(position));
-        txtStatus.setText(status.get(position));
         txtName.setText(item.get(position).getName());
         txtPrice.setText(addThousandSeparator(Double.valueOf(item.get(position).getPrice()))+"VND");
-        txtCate.setText(item.get(position).getCategory());
+
 
 //
 //        imgView.setImageResource(R.drawable.image_1);

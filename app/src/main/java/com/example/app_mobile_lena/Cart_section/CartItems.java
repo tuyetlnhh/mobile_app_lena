@@ -1,6 +1,8 @@
 package com.example.app_mobile_lena.Cart_section;
 
-public class CartItems {
+import java.io.Serializable;
+
+public class CartItems  implements Serializable {
     private String productId;
 
     private String name;
@@ -18,6 +20,9 @@ public class CartItems {
         this.img = img;
         this.quantity = quantity;
         this.price = price;
+    }
+
+    public CartItems() {
     }
 
     public String getName() {
@@ -48,7 +53,7 @@ public class CartItems {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
     public String getProductId() {

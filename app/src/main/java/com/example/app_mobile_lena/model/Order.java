@@ -2,10 +2,11 @@ package com.example.app_mobile_lena.model;
 
 import com.example.app_mobile_lena.Cart_section.CartItems;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class Order {
+public class Order implements Serializable {
     private String Id;
 
     public String getId() {

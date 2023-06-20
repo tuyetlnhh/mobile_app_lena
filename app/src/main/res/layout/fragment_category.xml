@@ -7,7 +7,8 @@
     android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".navbar_fragment.category_fragment"
-    android:id="@+id/category_fragment">
+    android:id="@+id/category_fragment"
+    android:background="#FFFFFF">
 
     <LinearLayout
         android:id="@+id/search_bar"
