@@ -232,7 +232,7 @@
            />
 
         <Button
-            android:id="@+id/editAccount"
+            android:id="@+id/btnHistory"
             android:layout_width="115dp"
             android:layout_height="54dp"
             android:layout_marginStart="40dp"

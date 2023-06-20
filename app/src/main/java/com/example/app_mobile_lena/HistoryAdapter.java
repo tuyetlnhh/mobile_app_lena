@@ -14,14 +14,16 @@ import java.util.ArrayList;
 
 public class HistoryAdapter  extends BaseAdapter {
     Context context;
-    ArrayList<String> name = new ArrayList<>();
+    ArrayList<String> id = new ArrayList<>();
+
+    ArrayList<String> name  = new ArrayList<>();
     ArrayList<String> img = new ArrayList<>();
     ArrayList<String> cate = new ArrayList<>();
     ArrayList<Double> price = new ArrayList<>();
     LayoutInflater inflater;
-    public HistoryAdapter(Context context, ArrayList<String> name, ArrayList<String> img, ArrayList<String> cate, ArrayList<Double> price){
+    public HistoryAdapter(Context context, ArrayList<String> id, ArrayList<String> name, ArrayList<String> img, ArrayList<String> cate, ArrayList<Double> price){
         Log.d("TAG","size = "+Integer.toString(name.size()));
-
+        this.id.addAll(id);
         this.context = context;
         this.name.addAll(name);
         this.img.addAll(img) ;
@@ -64,7 +66,9 @@ public class HistoryAdapter  extends BaseAdapter {
         TextView txtName = convertView.findViewById(R.id.itemName);
         TextView txtPrice = convertView.findViewById(R.id.itemPrice);
         TextView txtCate = convertView.findViewById(R.id.itemCate);
+        TextView txtId = convertView.findViewById(R.id.invoiceID);
 
+        txtId.setText(id.get(position));
         txtName.setText(name.get(position));
         txtPrice.setText(addThousandSeparator(Double.valueOf(price.get(position)))+"VND");
         txtCate.setText(cate.get(position));

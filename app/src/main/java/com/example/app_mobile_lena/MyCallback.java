@@ -6,4 +6,7 @@ public interface MyCallback {
     public default void onCallback(ArrayList<Item> eventList) {
 
     }
+    public default void onCallback(Item item){
+
+    }
 }

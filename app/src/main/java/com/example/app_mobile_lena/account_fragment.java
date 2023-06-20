@@ -56,6 +56,7 @@ public class account_fragment extends Fragment {
     }
 
     Button btnPreLogin;
+    Button btnHis;
     Button btnSignOut;
     Gson gson = new Gson();
 
@@ -93,6 +94,24 @@ public class account_fragment extends Fragment {
 
             }
         });
+
+        btnHis = (Button) view.findViewById(R.id.btnHistory);
+        btnHis.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sharedPref = getContext().getSharedPreferences("CURRENT_USER", Context.MODE_PRIVATE);
+                if(sharedPref.getString("userObject",null) == null){
+                    Intent intent = new Intent(getActivity(), pre_login.class);
+                    startActivity(intent);
+                }
+                else{
+                    Intent intent = new Intent(getActivity(), orderHistory.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
 
 
 
