@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_weight="1"
-            android:background="#ff6666"
+            android:background="@drawable/history_id_background"
             android:gravity="center"
             android:text="MaHD"
             android:textColor="#ffffff"
