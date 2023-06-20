@@ -20,18 +20,34 @@ public class Order {
     private String phone;
     private String total;
     private String address;
+    private String status;
+
+    private static int seed = 0;
 
     private ArrayList<CartItems> cartItems;
-    UUID randomUUID = UUID.randomUUID();
-    String randomId = randomUUID.toString();
 
-    public Order(String email, String phone, String total, String address, ArrayList<CartItems> cartItems) {
+    String randomId = "HD00" + Integer.toString(seed);
+
+    public Order() {
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Order(String email, String phone, String total, String address, ArrayList<CartItems> cartItems,String status) {
         this.Id = randomId;
         this.email = email;
         this.phone = phone;
         this.total = total;
         this.address = address;
         this.cartItems = cartItems;
+        this.status = status;
+        this.seed++;
     }
 
     public String getEmail() {
@@ -73,7 +89,13 @@ public class Order {
     public void setCartItems(ArrayList<CartItems> cartItems) {
         this.cartItems = cartItems;
     }
+    public void addToCart(CartItems item){
+        this.cartItems.add(item);
+    }
 
+    public CartItems getCartItemAt(int index){
+        return this.cartItems.get(index);
+    }
     @Override
     public String toString() {
         return "Order{" +

@@ -94,7 +94,7 @@ public class PaymentActivity extends AppCompatActivity  implements AdapterView.O
                     Log.d("I AM LOGGIN AS ", user.toString());
                 }
                 OrderRepository od = new OrderRepository();
-                Order order = new Order(user.getEmail(),"0912339905",total,"Ở đâu không biết",user.getCart());
+                Order order = new Order(user.getEmail(),"0912339905",total,"Ở đâu không biết",user.getCart(),"Chưa Hoàn Thành");
                 od.add(order);
             }
         });

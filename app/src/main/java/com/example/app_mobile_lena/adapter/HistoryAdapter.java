@@ -9,34 +9,34 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.app_mobile_lena.Cart_section.CartItems;
 import com.example.app_mobile_lena.R;
+
+import org.checkerframework.checker.units.qual.A;
+import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class HistoryAdapter  extends BaseAdapter {
     Context context;
-    ArrayList<String> name = new ArrayList<>();
-    ArrayList<String> img = new ArrayList<>();
-    ArrayList<String> cate = new ArrayList<>();
-    ArrayList<Double> price = new ArrayList<>();
+    ArrayList<String> id = new ArrayList<>();
+    ArrayList<String> status = new ArrayList<>();
+    ArrayList<String> total = new ArrayList<>();
+    ArrayList<CartItems> item = new ArrayList<>();
     LayoutInflater inflater;
-    public HistoryAdapter(Context context, ArrayList<String> name, ArrayList<String> img, ArrayList<String> cate, ArrayList<Double> price){
-        Log.d("TAG","size = "+Integer.toString(name.size()));
-
+    public HistoryAdapter(Context context, ArrayList<String> id, ArrayList<String>status, ArrayList<CartItems> items, ArrayList<String> total){
+        this.id.addAll(id);
+        this.status.addAll(status);
         this.context = context;
-        this.name.addAll(name);
-        this.img.addAll(img) ;
-        this.cate.addAll(cate);
-        this.price.addAll(price);
-        Log.d("TAG","this name size =" + Integer.toString(this.name.size()));
-
+        this.item.addAll(item);
+        this.total.addAll(total);
     }
 
 
     @Override
     public int getCount(){
-        return name.size();
+        return id.size();
     }
 
     @Override
@@ -59,17 +59,21 @@ public class HistoryAdapter  extends BaseAdapter {
 
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.cart_item, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.order_history_item, parent, false);
         }
 
         ImageView imgView = convertView.findViewById(R.id.itemImage);
         TextView txtName = convertView.findViewById(R.id.itemName);
         TextView txtPrice = convertView.findViewById(R.id.itemPrice);
         TextView txtCate = convertView.findViewById(R.id.itemCate);
+        TextView txtId = convertView.findViewById(R.id.invoiceID);
+        TextView txtStatus = convertView.findViewById(R.id.invoiceStatus);
 
-        txtName.setText(name.get(position));
-        txtPrice.setText(addThousandSeparator(Double.valueOf(price.get(position)))+"VND");
-        txtCate.setText(cate.get(position));
+        txtId.setText(id.get(position));
+        txtStatus.setText(status.get(position));
+        txtName.setText(item.get(position).getName());
+        txtPrice.setText(addThousandSeparator(Double.valueOf(item.get(position).getPrice()))+"VND");
+        txtCate.setText(item.get(position).getCategory());
 
 
         imgView.setImageResource(R.drawable.image_1);

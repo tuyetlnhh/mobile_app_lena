@@ -34,6 +34,7 @@ public class OrderRepository {
         docData.put("total", order.getTotal());
         docData.put("phone", order.getPhone());
         docData.put("address", order.getAddress());
+        docData.put("status",order.getStatus());
 
         Log.d("DONT PUT String", "IN IF STATEMENT");
         db.collection("orders").document(order.getId())
@@ -55,9 +56,9 @@ public class OrderRepository {
 
     public ArrayList<Order> getOrderByUser(String userEmail) {
         ArrayList<Order> carts = new ArrayList<>();
-        Query capitalCities = db.collection("orders").whereEqualTo("email", userEmail);
-        db.collection("cities")
-                .whereEqualTo("capital", true)
+
+        db.collection("orders")
+                .whereEqualTo("email", userEmail)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
