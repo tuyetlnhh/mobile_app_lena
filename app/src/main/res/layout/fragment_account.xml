@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".navbar_fragment.account_fragment">
+    tools:context=".navbar_fragment.account_fragment"
+    android:background="#FFFFFF">
 
     <TextView
         android:id="@+id/textView14"
