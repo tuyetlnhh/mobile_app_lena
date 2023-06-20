@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -67,6 +68,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         ImageButton btnMinus = findViewById(R.id.btnIncrement);
         ImageButton btnAdd = findViewById(R.id.btnDecrement);
         ImageButton btnBack = findViewById(R.id.btnBack);
+        Button btnAddFavourite = findViewById(R.id.btnFav);
         ImageButton btnGoToCart = findViewById(R.id.btnGoToCart);
         ImageButton btnAddToCart = findViewById(R.id.btnAddToCart);
         TextView tvQuantity = findViewById(R.id.tvQuantity);
@@ -162,6 +164,70 @@ public class ProductDetailActivity extends AppCompatActivity {
                 tvQuantity.setText(String.valueOf(decreaseQuantity()));
             }
         });
+
+        btnAddFavourite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean ITEM_EXISTED = false;
+                if (userPref.getString("userObject", null) == null) {
+                    Intent intent = new Intent(getApplicationContext(), pre_login.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Log.d("I AM IN IF STATEMENT", "IN IF STATEMENT");
+                    long addedQuantity = Long.parseLong(tvQuantity.getText().toString());
+                    ArrayList<CartItems> currentUserCart = (ArrayList<CartItems>) user.getCart().clone();
+                    ArrayList<Item> wishlist = (ArrayList<Item>) user.getWishlist().clone();
+                    for(Item item: wishlist){
+                        if(item.getKey() != null){
+                            if(item.getKey().equals(key)){
+                                ITEM_EXISTED = true;
+                                wishlist.remove(item);
+                                Toast.makeText(ProductDetailActivity.this, "Xóa khỏi yêu thích", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                    if(ITEM_EXISTED == false)  {
+                        Toast.makeText(ProductDetailActivity.this, "Thêm vào yêu thích", Toast.LENGTH_SHORT).show();
+                        wishlist.add(item);
+                    }
+
+                    Map<String, Object> docData = new HashMap<>();
+                        // Set lại cart mới cho user
+                        // Thêm lại user vào db cùng với cart mới
+                        docData.put("cart", user.getCart());
+                        docData.put("wishlist", wishlist);
+                        docData.put("email", user.getEmail());
+                        docData.put("password", user.getPassword());
+                        Log.d("DONT PUT String", "IN IF STATEMENT");
+                        db.collection("users").document(user.getID())
+                                .set(docData)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d("TAG", "DocumentSnapshot successfully written!");
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.w("TAG", "Error writing document", e);
+                                    }
+                                });
+                    user.setWishlist(wishlist);
+
+
+                }
+                    // Update lại user shared preference
+                    String userStr = gson.toJson(user);
+                    Log.d("USER UPDATED", userStr);
+                    editor.putString("userObject", userStr);
+                    editor.commit();
+                    // Update xong thì cập nhật lại User
+                    user = gson.fromJson(userPref.getString("userObject", ""), User.class);
+                }
+
+        });
         User finalUser = user;
         btnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -209,7 +275,9 @@ public class ProductDetailActivity extends AppCompatActivity {
                         // Set lại cart mới cho user
                         user.setCart(updatedCart);
                         // Thêm lại user vào db cùng với cart mới
+
                         docData.put("cart", user.getCart());
+                        docData.put("wishlist", user.getWishlist());
                         docData.put("email", user.getEmail());
                         docData.put("password", user.getPassword());
                         Log.d("DONT PUT String", "IN IF STATEMENT");

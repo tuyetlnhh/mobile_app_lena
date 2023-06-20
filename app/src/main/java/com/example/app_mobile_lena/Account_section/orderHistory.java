@@ -146,14 +146,17 @@ public class orderHistory extends AppCompatActivity implements MyCallback {
             public void orderCallback(ArrayList<Order> eventList) {
 
                 Log.d("TAG", "evetList size: " + Integer.toString(eventList.size()));
-                orderList.addAll(eventList);
+                orderList = (ArrayList<Order>) eventList.clone();
                 Log.d("TAG", "Order list: " + eventList.toString());
                 for(Order i:orderList){
                     id.add(i.getId());
                     status.add(i.getStatus());
                     total.add(i.getTotal());
-                    cartItems.add(i.getCartItems().get(0));
-                    Log.d("TAG", "Cart item length: " + Integer.toString(cartItems.size()));
+                   cartItems.add(i.getCartItems().get(0));
+
+                    Log.d("TAG",orderList.toString());
+
+
 
                 }
 
