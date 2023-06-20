@@ -27,7 +27,6 @@
             android:exported="false" />
         <activity
             android:name=".changePassword"
-            android:name=".ShopingHistoryActivity"
             android:exported="false" />
         <activity
             android:name=".QRScanActivity"
