@@ -26,7 +26,7 @@ public class Item implements Serializable {
     private ArrayList<String> slider;
     private Double rate;
 
-    Item(){
+    public Item(){
         this.name = "";
         this.category = "";
         this.image = "";
