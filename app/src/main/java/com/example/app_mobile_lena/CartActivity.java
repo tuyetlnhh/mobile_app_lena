@@ -1,6 +1,7 @@
 package com.example.app_mobile_lena;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,13 +10,21 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.Gson;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class CartActivity extends AppCompatActivity {
+
+
+
+
     public static void justifyListViewHeightBasedOnChildren (ListView listView) {
 
         ListAdapter adapter = listView.getAdapter();
@@ -42,6 +51,12 @@ public class CartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cart);
 
+        Gson gson = new Gson();
+        SharedPreferences userPref = getSharedPreferences("CURRENT_USER",MODE_PRIVATE);
+        User user = gson.fromJson(userPref.getString("userObject",null),User.class);
+        ArrayList<CartItems> cart = (ArrayList<CartItems>) user.getCart().clone();
+
+//        TextView txtTotal = findViewById(R.id.textTotalOrderPrice2);
         Button btnGoToPayment = findViewById(R.id.btnPay);
         LinearLayout ll = findViewById(R.id.llCoupon);
         ImageButton btnBack = findViewById(R.id.btnGoBack);
@@ -50,23 +65,20 @@ public class CartActivity extends AppCompatActivity {
         ArrayList<String> cate = new ArrayList<>();
         ArrayList<Double> price = new ArrayList<>();
         ArrayList<String> img = new ArrayList<>();
-        name.add("chó");
-        name.add("gấu");
-        name.add("mèo");
-        cate.add("thú bông");
-        cate.add("thú bông");
-        cate.add("thú bông");
-        price.add(150000.0);
-        price.add(230000.0);
-        price.add(250000.0);
-        img.add("1123");
-        img.add("12312312");
-        img.add("123123");
+        ArrayList<Long> quantity = new ArrayList<>();
 
-        cartItemAdapter adapter = new cartItemAdapter(this,name, img, cate, price);
+        for(CartItems item : cart){
+            name.add(item.getName());
+            cate.add(item.getCategory());
+            price.add(item.getPrice());
+            img.add(item.getImg());
+            quantity.add(item.getQuantity());
+        }
+
+        cartItemAdapter adapter = new cartItemAdapter(this,name, img, cate, price,quantity);
         listView.setAdapter(adapter);
         justifyListViewHeightBasedOnChildren(listView);
-
+//        txtTotal.setText(addThousandSeparator(Double.valueOf(getTotal(cart))));
         btnGoToPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,5 +103,18 @@ public class CartActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private double getTotal(ArrayList<CartItems> cart){
+        double total = 0;
+        for(CartItems item : cart){
+            total += item.getPrice() * item.getQuantity();
+        }
+        return total;
+    }
+
+    public String addThousandSeparator(Double number) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        return decimalFormat.format(number) + " VND";
     }
 }
