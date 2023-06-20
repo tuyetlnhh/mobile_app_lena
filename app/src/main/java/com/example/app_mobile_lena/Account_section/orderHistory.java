@@ -4,17 +4,20 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.example.app_mobile_lena.Cart_section.CartItems;
 import com.example.app_mobile_lena.MyCallback;
+import com.example.app_mobile_lena.ProductDetail_section.ProductDetailActivity;
 import com.example.app_mobile_lena.R;
 import com.example.app_mobile_lena.adapter.GridAdapter;
 import com.example.app_mobile_lena.adapter.HistoryAdapter;
@@ -31,11 +34,14 @@ import com.google.gson.Gson;
 import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class orderHistory extends AppCompatActivity implements MyCallback {
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private User user = null;
     private ArrayList<Order> orderList = new ArrayList<>();
+    private ArrayList<CartItems> cartItems = new ArrayList<>();
 
     public static void justifyListViewHeightBasedOnChildren (ListView listView) {
 
@@ -76,8 +82,25 @@ public class orderHistory extends AppCompatActivity implements MyCallback {
                                 order.setTotal(document.getData().get("total").toString());
                                 order.setStatus(document.getData().get("status").toString());
                                 order.setId(document.getId());
-                                ArrayList<CartItems> cart =  (ArrayList<CartItems>) document.get("cart");
-                                order.setCartItems(cart);
+
+                                ArrayList<CartItems> resultCart = new ArrayList<>();
+                                ArrayList<HashMap<String, Object>> cartDataList = (ArrayList<HashMap<String, Object>>) document.getData().get("cart");
+
+                                if (cartDataList != null) {
+                                    for (HashMap<String, Object> cartItemData : cartDataList) {
+                                        CartItems cartItem = new CartItems();
+                                        cartItem.setName(cartItemData.get("name").toString());
+                                        cartItem.setPrice(Double.parseDouble(cartItemData.get("price").toString()));
+                                        cartItem.setCategory(cartItemData.get("category").toString());
+                                        cartItem.setImg(cartItemData.get("img").toString());
+                                        cartItem.setProductId(cartItemData.get("productId").toString());
+                                        cartItem.setQuantity(Long.valueOf(cartItemData.get("quantity").toString()));
+                                        // Thiết lập các thuộc tính khác của cartItem
+
+                                        resultCart.add(cartItem);
+                                    }
+                                }
+                                order.setCartItems(resultCart);
                                 Log.d("TAG", order.toString());
                                 orders.add(order);
                             }
@@ -116,12 +139,11 @@ public class orderHistory extends AppCompatActivity implements MyCallback {
         ArrayList<Double> price = new ArrayList<>();
         ArrayList<String> id = new ArrayList<>();
         ArrayList<String> status = new ArrayList<>();
-        ArrayList<CartItems> cartItems = new ArrayList<>();
+
         ArrayList<String> total = new ArrayList<>();
         readData(new MyCallback() {
             @Override
             public void orderCallback(ArrayList<Order> eventList) {
-                Gson gson = new Gson();
 
                 Log.d("TAG", "evetList size: " + Integer.toString(eventList.size()));
                 orderList.addAll(eventList);
@@ -130,19 +152,25 @@ public class orderHistory extends AppCompatActivity implements MyCallback {
                     id.add(i.getId());
                     status.add(i.getStatus());
                     total.add(i.getTotal());
-//                    cartItems.add(i.getCartItems().get(0));
-                    Log.d("TAG", "Cart item: " +((CartItems) i.getCartItems().get(0)).toString());
+                    cartItems.add(i.getCartItems().get(0));
+                    Log.d("TAG", "Cart item length: " + Integer.toString(cartItems.size()));
 
                 }
 
                 HistoryAdapter adapter = new HistoryAdapter(orderHistory.this,id, status,cartItems,total);
                 itemList.setAdapter(adapter);
+                justifyListViewHeightBasedOnChildren(itemList);
+            }
+        });
+        itemList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Intent intent = new Intent(orderHistory.this, orderDetail.class);
+                intent.putExtra("order", orderList.get(position));
+                startActivity(intent);
             }
         });
 
-//        HistoryAdapter adapter = new HistoryAdapter(orderHistory.this,id, status, name, img,cate, price);
-//        itemList.setAdapter(adapter);
-//        justifyListViewHeightBasedOnChildren(itemList);
     }
 
 }

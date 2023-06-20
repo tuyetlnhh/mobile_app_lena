@@ -9,6 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.app_mobile_lena.Cart_section.CartItems;
 import com.example.app_mobile_lena.R;
 
@@ -25,7 +27,7 @@ public class HistoryAdapter  extends BaseAdapter {
     ArrayList<String> total = new ArrayList<>();
     ArrayList<CartItems> item = new ArrayList<>();
     LayoutInflater inflater;
-    public HistoryAdapter(Context context, ArrayList<String> id, ArrayList<String>status, ArrayList<CartItems> items, ArrayList<String> total){
+    public HistoryAdapter(Context context, ArrayList<String> id, ArrayList<String>status, ArrayList<CartItems> item, ArrayList<String> total){
         this.id.addAll(id);
         this.status.addAll(status);
         this.context = context;
@@ -75,15 +77,15 @@ public class HistoryAdapter  extends BaseAdapter {
         txtPrice.setText(addThousandSeparator(Double.valueOf(item.get(position).getPrice()))+"VND");
         txtCate.setText(item.get(position).getCategory());
 
-
-        imgView.setImageResource(R.drawable.image_1);
-//        RequestOptions requestOptions = new RequestOptions()
-//                .placeholder(R.drawable.loading_icon) // (tùy chọn) hình ảnh hiển thị trước khi tải
-//                .error(R.drawable.no_image);
-//        Glide.with(convertView)
-//                .load(img.get(position))
-//                .apply(requestOptions)
-//                .into(imgView);
+//
+//        imgView.setImageResource(R.drawable.image_1);
+        RequestOptions requestOptions = new RequestOptions()
+                .placeholder(R.drawable.loading_icon) // (tùy chọn) hình ảnh hiển thị trước khi tải
+                .error(R.drawable.no_image);
+        Glide.with(convertView)
+                .load(item.get(position).getImg())
+                .apply(requestOptions)
+                .into(imgView);
 
         return convertView;
     }
