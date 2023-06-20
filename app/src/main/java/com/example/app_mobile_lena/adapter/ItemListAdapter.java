@@ -63,8 +63,6 @@ public class ItemListAdapter  extends BaseAdapter {
         TextView txtName = convertView.findViewById(R.id.txtProductName);
         TextView txtPrice = convertView.findViewById(R.id.txtProductPrice);
 
-
-
         txtName.setText(item.get(position).getName());
         txtPrice.setText(addThousandSeparator(Double.valueOf(item.get(position).getPrice()))+"VND");
 

@@ -47,7 +47,7 @@ public class orderDetail extends AppCompatActivity {
         setContentView(R.layout.order_detail);
 
         ImageButton btnBack = findViewById(R.id.btnBack);
-        Button btnBackHome = findViewById(R.id.btnBackToHome);
+
         ListView itemList = findViewById(R.id.itemList);
         TextView txtOrderID = findViewById(R.id.txtOrderID);
         TextView txtPhone = findViewById(R.id.txtPhone);
@@ -72,12 +72,6 @@ public class orderDetail extends AppCompatActivity {
             }
         });
 
-        btnBackHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(orderDetail.this, home_frament.class);
-                startActivity(intent);
-            }
-        });
+
     }
 }
