@@ -59,7 +59,7 @@ public class OrderRepository {
 
     public ArrayList<Order> getOrderByUser(String userEmail) {
         ArrayList<Order> carts = new ArrayList<>();
-        Query capitalCities = db.collection("orrders").whereEqualTo("email", userEmail);
+        Query capitalCities = db.collection("orders").whereEqualTo("email", userEmail);
         db.collection("cities")
                 .whereEqualTo("capital", true)
                 .get()
