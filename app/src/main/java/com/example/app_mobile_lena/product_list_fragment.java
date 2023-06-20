@@ -114,7 +114,6 @@ public class product_list_fragment extends Fragment implements MyCallback{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
     }
     public void finalize() throws Throwable {
         try {

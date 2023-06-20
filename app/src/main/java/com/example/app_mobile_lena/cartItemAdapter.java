@@ -1,6 +1,8 @@
 package com.example.app_mobile_lena;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.util.Log;
@@ -83,6 +85,7 @@ public class cartItemAdapter  extends BaseAdapter {
         TextView txtPrice = convertView.findViewById(R.id.itemPrice);
         TextView txtCate = convertView.findViewById(R.id.itemCate);
         TextView txtQuantity = convertView.findViewById(R.id.itemQuantity);
+        Button btnDelete = convertView.findViewById(R.id.btnDelete);
         Button btnMinus = convertView.findViewById(R.id.btnMinus);
         Button btnAdd = convertView.findViewById(R.id.btnAdd);
         SharedPreferences userPref = context.getSharedPreferences("CURRENT_USER",Context.MODE_PRIVATE);
@@ -106,13 +109,9 @@ public class cartItemAdapter  extends BaseAdapter {
                 updateData(user);
                 txtQuantity.setText(Integer.toString((int)user.getCart().get(position).getQuantity()));
 
-
                 String txtTotal1 = addThousandSeparator(Double.valueOf(getTotal(user.getCart())));
-                LayoutInflater inflater = LayoutInflater.from(context);
-                View otherLayout = inflater.inflate(R.layout.cart, null);
-                TextView txtTotal = otherLayout.findViewById(R.id.textTotalOrderPrice2);
-                txtTotal.setText(txtTotal1);
-                Log.d("TAG",txtTotal1);
+                CartActivity.txtTotal.setText(txtTotal1);
+
                 String userStr = gson.toJson(user);
                 editor.putString("userObject", userStr);
                 editor.commit();
@@ -137,12 +136,50 @@ public class cartItemAdapter  extends BaseAdapter {
 
 
                 String txtTotal1 = addThousandSeparator(Double.valueOf(getTotal(user.getCart())));
+                CartActivity.txtTotal.setText(txtTotal1);
                 String userStr = gson.toJson(user);
 
                 editor.putString("userObject", userStr);
                 editor.commit();
                 // Update xong thì cập nhật lại User
                 updateUser(user);
+
+
+            }
+        });
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Gson gson = new Gson();
+                User user = gson.fromJson(userPref.getString("userObject",null).toString(),User.class);
+                ArrayList<CartItems> clone_cart = (ArrayList<CartItems>) user.getCart().clone();
+                AlertDialog.Builder adb=new AlertDialog.Builder(context);
+                adb.setTitle("Delete?");
+                adb.setMessage("Are you sure you want to delete " + position);
+                final int positionToRemove = position;
+                adb.setNegativeButton("Cancel", null);
+                adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        clone_cart.remove(positionToRemove);
+                        user.setCart(clone_cart);
+                        updateData(user);
+                        String userStr = gson.toJson(user);
+                        editor.putString("userObject", userStr);
+                        editor.commit();
+                        // Update xong thì cập nhật lại User
+                        updateUser(user);
+
+
+                        name.remove(positionToRemove);
+                        img.remove(positionToRemove);
+                        cate.remove(positionToRemove);
+                        price.remove(positionToRemove);
+
+                        CartActivity.adapter.notifyDataSetChanged();
+                    }});
+                adb.show();
+
 
 
             }

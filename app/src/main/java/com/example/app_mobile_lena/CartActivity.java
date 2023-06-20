@@ -23,7 +23,8 @@ import java.util.ArrayList;
 public class CartActivity extends AppCompatActivity {
 
 
-
+    public static TextView txtTotal;
+    public static cartItemAdapter adapter;
 
     public static void justifyListViewHeightBasedOnChildren (ListView listView) {
 
@@ -56,11 +57,11 @@ public class CartActivity extends AppCompatActivity {
         User user = gson.fromJson(userPref.getString("userObject",null),User.class);
         ArrayList<CartItems> cart = (ArrayList<CartItems>) user.getCart().clone();
 
-//        TextView txtTotal = findViewById(R.id.textTotalOrderPrice2);
         Button btnGoToPayment = findViewById(R.id.btnPay);
         LinearLayout ll = findViewById(R.id.llCoupon);
         ImageButton btnBack = findViewById(R.id.btnGoBack);
         ListView listView = findViewById(R.id.itemList);
+        txtTotal = findViewById(R.id.textTotalOrderPrice2);
         ArrayList<String> name = new ArrayList<>();
         ArrayList<String> cate = new ArrayList<>();
         ArrayList<Double> price = new ArrayList<>();
@@ -75,10 +76,10 @@ public class CartActivity extends AppCompatActivity {
             quantity.add(item.getQuantity());
         }
 
-        cartItemAdapter adapter = new cartItemAdapter(this,name, img, cate, price,quantity);
+        adapter = new cartItemAdapter(this,name, img, cate, price,quantity);
         listView.setAdapter(adapter);
         justifyListViewHeightBasedOnChildren(listView);
-//        txtTotal.setText(addThousandSeparator(Double.valueOf(getTotal(cart))));
+        txtTotal.setText(addThousandSeparator(Double.valueOf(getTotal(cart))));
         btnGoToPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
