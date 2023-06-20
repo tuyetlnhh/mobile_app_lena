@@ -47,7 +47,7 @@
                     android:textStyle="bold" />
 
                 <Button
-                    android:id="@+id/editAccount"
+                    android:id="@+id/btnOrderHis"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#FFFFFF"
@@ -56,11 +56,11 @@
                     android:textColor="#000000" />
 
                 <Button
-                    android:id="@+id/changePassword"
+                    android:id="@+id/btnOrderTracker"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#FFFFFF"
-                    android:text="LỊCH SỬ ĐƠN HÀNG"
+                    android:text="TÌNH TRẠNG ĐƠN HÀNG"
                     android:textAlignment="viewStart"
                     android:textColor="#000000" />
 
@@ -84,7 +84,7 @@
                     android:textStyle="bold" />
 
                 <Button
-                    android:id="@+id/btnLogout"
+                    android:id="@+id/btnAccount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#FFFFFF"

@@ -19,6 +19,9 @@ public class account_setting extends AppCompatActivity {
 
         ImageButton btnBack = findViewById(R.id.btBack);
         Button btnLogOut = (Button) findViewById(R.id.btnLogout);
+        Button btnEditAcc = findViewById(R.id.btnEditAcc);
+        Button btnChangePass = findViewById(R.id.btnChangePass);
+
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
