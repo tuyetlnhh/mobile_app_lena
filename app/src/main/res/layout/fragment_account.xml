@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".navbar_fragment.account_fragment"
-    android:background="#FFFFFF">
+    tools:context=".navbar_fragment.account_fragment">
 
     <TextView
         android:id="@+id/textView14"
@@ -56,15 +55,6 @@
                     android:textAlignment="viewStart"
                     android:textColor="#000000" />
 
-                <Button
-                    android:id="@+id/btnOrderTracker"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#FFFFFF"
-                    android:text="TÌNH TRẠNG ĐƠN HÀNG"
-                    android:textAlignment="viewStart"
-                    android:textColor="#000000" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -93,14 +83,6 @@
                     android:textAlignment="viewStart"
                     android:textColor="#000000" />
 
-                <Button
-                    android:id="@+id/button5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#FFFFFF"
-                    android:text="CÀI ĐẶT ỨNG DỤNG"
-                    android:textAlignment="viewStart"
-                    android:textColor="#000000" />
             </LinearLayout>
 
             <LinearLayout
