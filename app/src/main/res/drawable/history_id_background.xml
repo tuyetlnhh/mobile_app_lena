@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- combined_shape.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Hình chữ nhật -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/main_color"/> <!-- Màu của hình chữ nhật -->
+            <corners android:topRightRadius="200dp"
+                android:bottomRightRadius="200dp"/>
+        </shape>
+    </item>
+
+    <!-- Nửa hình tròn -->
+
+</layer-list>
