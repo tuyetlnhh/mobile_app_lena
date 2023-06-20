@@ -26,6 +26,19 @@ public class Item implements Serializable {
     private ArrayList<String> slider;
     private Double rate;
 
+    public Item(String key, String name, String category, String image, Double price, Double sale_price, long quantity, String description,  Double rate) {
+        this.key = key;
+        this.name = name;
+        this.category = category;
+        this.image = image;
+        this.price = price;
+        this.sale_price = sale_price;
+        this.quantity = quantity;
+        this.description = description;
+        this.slider = new ArrayList<>();
+        this.rate = rate;
+    }
+
     public Item(){
         this.name = "";
         this.category = "";
@@ -119,5 +132,19 @@ public class Item implements Serializable {
         });
     }
 
-
+    @Override
+    public String toString() {
+        return "Item{" +
+                "key='" + key + '\'' +
+                ", name='" + name + '\'' +
+                ", category='" + category + '\'' +
+                ", image='" + image + '\'' +
+                ", price=" + price +
+                ", sale_price=" + sale_price +
+                ", quantity=" + quantity +
+                ", description='" + description + '\'' +
+                ", slider=" + slider +
+                ", rate=" + rate +
+                '}';
+    }
 }

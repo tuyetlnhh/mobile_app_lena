@@ -1,5 +1,6 @@
 package com.example.app_mobile_lena.Payment_section;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.app_mobile_lena.Account_section.pre_login;
 import com.example.app_mobile_lena.Cart_section.CartActivity;
 import com.example.app_mobile_lena.OrderRepository;
 import com.example.app_mobile_lena.R;
@@ -37,6 +40,9 @@ public class PaymentActivity extends AppCompatActivity  implements AdapterView.O
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.payment);
+        EditText txtName = findViewById(R.id.editTextName);
+        EditText txtPhone = findViewById(R.id.editTextDetailAddress);
+        EditText txtAddress = findViewById(R.id.editTextPhoneNumber);
 
         btnOrder = findViewById(R.id.btnOrder);
 //selection = (TextView) findViewById(R.id.textProvince);
@@ -94,8 +100,11 @@ public class PaymentActivity extends AppCompatActivity  implements AdapterView.O
                     Log.d("I AM LOGGIN AS ", user.toString());
                 }
                 OrderRepository od = new OrderRepository();
-                Order order = new Order(user.getEmail(),"0912339905",total,"Ở đâu không biết",user.getCart(),"Chưa Hoàn Thành");
+                Order order = new Order(user.getEmail(),txtPhone.getText().toString(),total,txtAddress.getText().toString(),user.getCart(),"Chưa Hoàn Thành");
                 od.add(order);
+                Intent intent = new Intent(getApplicationContext(), finishPayment.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

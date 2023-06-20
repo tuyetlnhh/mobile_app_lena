@@ -156,11 +156,11 @@ public class cartItemAdapter  extends BaseAdapter {
                 User user = gson.fromJson(userPref.getString("userObject",null).toString(),User.class);
                 ArrayList<CartItems> clone_cart = (ArrayList<CartItems>) user.getCart().clone();
                 AlertDialog.Builder adb=new AlertDialog.Builder(context);
-                adb.setTitle("Delete?");
-                adb.setMessage("Are you sure you want to delete " + position);
+                adb.setTitle("Xóa?");
+                adb.setMessage("Bạn có thực sự muốn xóa?");
                 final int positionToRemove = position;
-                adb.setNegativeButton("Cancel", null);
-                adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
+                adb.setNegativeButton("Hủy", null);
+                adb.setPositiveButton("Đồng Ý", new AlertDialog.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         clone_cart.remove(positionToRemove);
                         user.setCart(clone_cart);
