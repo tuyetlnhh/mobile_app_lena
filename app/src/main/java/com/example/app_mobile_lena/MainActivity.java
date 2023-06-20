@@ -1,47 +1,38 @@
 package com.example.app_mobile_lena;
 
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.fragment.app.Fragment;
 
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.RatingBar;
-
 
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.imageview.ShapeableImageView;
-import com.google.android.material.tabs.TabLayoutMediator;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentReference;
+import com.example.app_mobile_lena.Category_section.wool_product_fragment;
+import com.example.app_mobile_lena.Category_section.wool_tool_fragment;
+import com.example.app_mobile_lena.adapter.MyAdapter;
+import com.example.app_mobile_lena.model.User;
+import com.example.app_mobile_lena.navbar_fragment.account_fragment;
+import com.example.app_mobile_lena.navbar_fragment.category_fragment;
+import com.example.app_mobile_lena.navbar_fragment.favourite_fragment;
+import com.example.app_mobile_lena.navbar_fragment.home_frament;
+import com.example.app_mobile_lena.navbar_fragment.product_list_fragment;
+import com.example.app_mobile_lena.navbar_fragment.qr_fragment;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.ktx.Firebase;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity implements wool_product_fragment.OnListItemClickListener, wool_tool_fragment.OnListItemClickListener, product_list_fragment.OnButtonClickListener {

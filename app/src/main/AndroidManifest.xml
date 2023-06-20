@@ -17,45 +17,45 @@
         android:theme="@style/Theme.App_Mobile_Lena"
         tools:targetApi="31">
         <activity
-            android:name=".orderDetail"
+            android:name=".Account_section.orderDetail"
             android:exported="false" />
         <activity
-            android:name=".orderHistoryItem"
+            android:name=".Account_section.orderHistoryItem"
             android:exported="false" />
         <activity
-            android:name=".orderHistory"
+            android:name=".Account_section.orderHistory"
             android:exported="false" />
         <activity
-            android:name=".accountInformation"
+            android:name=".Account_section.accountInformation"
             android:exported="false" />
         <activity
-            android:name=".changePassword"
+            android:name=".Account_section.changePassword"
             android:exported="false" />
         <activity
             android:name=".QRScanActivity"
             android:exported="false" />
         <activity
-            android:name=".finishPayment"
+            android:name=".Payment_section.finishPayment"
             android:exported="false" />
         <activity
-            android:name=".account_setting"
+            android:name=".Account_section.account_setting"
             android:exported="false" />
         <activity
-            android:name=".RegisterPage"
+            android:name=".Account_section.RegisterPage"
             android:exported="false" />
         <activity
-            android:name=".LoginPage"
+            android:name=".Account_section.LoginPage"
             android:exported="false" />
         <activity
-            android:name=".pre_login"
+            android:name=".Account_section.pre_login"
             android:exported="false"
             android:label="@string/title_activity_pre_login"
             android:theme="@style/Theme.App_Mobile_Lena" />
-        <activity android:name=".ProductDetailActivity" />
-        <activity android:name=".CartActivity" />
-        <activity android:name=".PaymentActivity" />
-        <activity android:name=".CouponActivity" />
-        <activity android:name=".ForgetPasswordActivity" />
+        <activity android:name=".ProductDetail_section.ProductDetailActivity" />
+        <activity android:name=".Cart_section.CartActivity" />
+        <activity android:name=".Payment_section.PaymentActivity" />
+        <activity android:name=".Cart_section.CouponActivity" />
+        <activity android:name=".Account_section.ForgetPasswordActivity" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"
