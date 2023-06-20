@@ -68,15 +68,6 @@
                 android:contentDescription="sort"
                 android:src="@drawable/sort__2_" />
 
-            <ImageButton
-                android:id="@+id/imageButton6"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:backgroundTint="#FFFCFC"
-                android:contentDescription="filter"
-                android:src="@drawable/filter_filled_tool_symbol__1___3_" />
-
         </LinearLayout>
 
 

@@ -83,7 +83,7 @@ public class wool_tool_fragment extends Fragment {
         View view = getView();
         if(view != null){
             ListView listView = view.findViewById(R.id.list_view);
-            String[] items = {"Len", "Cây Móc", "Phụ Kiện", "Khác"};
+            String[] items = {"Len", "Dụng Cụ", "Phụ Kiện", "Khác"};
             Context context = getContext();
 
 // Create an adapter to populate the ListView with the data
@@ -114,7 +114,7 @@ public class wool_tool_fragment extends Fragment {
         ListView listView = view.findViewById(R.id.list_view);
 
 // Create an array of data to display
-        String[] items = {"Len", "Cây Móc", "Phụ Kiện", "Khác"};
+        String[] items = {"Len", "Dụng Cụ", "Phụ Kiện", "Khác"};
         Context context = getContext();
 
 // Create an adapter to populate the ListView with the data
