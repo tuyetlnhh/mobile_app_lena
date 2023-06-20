@@ -103,7 +103,6 @@ public class favourite_fragment extends Fragment {
             user = gson.fromJson(userObject,User.class);
             Log.d("I AM LOGGIN AS ", user.toString());
         }
-        Log.d("TAG",user.getWishlist().get(4).getName().toString());
         WishlistAdapter adapter = new WishlistAdapter(getContext(),user.getWishlist());
         itemList.setAdapter(adapter);
 
