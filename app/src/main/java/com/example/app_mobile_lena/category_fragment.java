@@ -2,6 +2,7 @@ package com.example.app_mobile_lena;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.google.android.material.tabs.TabLayout;
@@ -39,6 +41,8 @@ public class category_fragment extends Fragment   {
     private String mParam2;
 
     categoryAdapter adapter;
+
+    Button btnCart;
     TabLayout tabLayout;
     ViewPager2 viewPager2;
 
@@ -101,13 +105,21 @@ public class category_fragment extends Fragment   {
         new TabLayoutMediator(tabLayout, viewPager2,((tab, position)->tab.setText(titles[position]))).attach();
 
         ImageButton btnCart = view.findViewById(R.id.btnCart);
-
         btnCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), CartActivity.class);
-                startActivity(intent);
+                SharedPreferences sharedPref = getContext().getSharedPreferences("CURRENT_USER", Context.MODE_PRIVATE);
+                if(sharedPref.getString("userObject",null) == null){
+                    Intent intent = new Intent(getActivity(), pre_login.class);
+                    startActivity(intent);
+                }
+                else{
+                    Intent intent = new Intent(getActivity(), CartActivity.class);
+                    startActivity(intent);
+                }
+
             }
+
         });
 
         return view;
