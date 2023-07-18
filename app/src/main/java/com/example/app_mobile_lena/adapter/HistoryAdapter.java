@@ -32,6 +32,7 @@ public class HistoryAdapter  extends BaseAdapter {
         this.status.addAll(status);
         this.context = context;
         this.item.addAll(item);
+        Log.d("TAG", "Total: " + total.get(0));
         this.total.addAll(total);
     }
 
@@ -70,7 +71,9 @@ public class HistoryAdapter  extends BaseAdapter {
         TextView txtCate = convertView.findViewById(R.id.itemCate);
         TextView txtId = convertView.findViewById(R.id.invoiceID);
         TextView txtStatus = convertView.findViewById(R.id.invoiceStatus);
+        TextView txtTotal = convertView.findViewById(R.id.totalInvoice);
 
+        txtTotal.setText("Thành tiền: " + total.get(position)+"VND");
         txtId.setText(id.get(position));
         txtStatus.setText(status.get(position));
         txtName.setText(item.get(position).getName());

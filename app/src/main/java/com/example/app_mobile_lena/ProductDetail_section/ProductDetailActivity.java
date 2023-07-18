@@ -275,6 +275,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                         // Set lại cart mới cho user
                         user.setCart(updatedCart);
                         // Thêm lại user vào db cùng với cart mới
+                        Toast.makeText(ProductDetailActivity.this, "Thêm giỏ hàng thành công", Toast.LENGTH_SHORT).show();
 
                         docData.put("cart", user.getCart());
                         docData.put("wishlist", user.getWishlist());

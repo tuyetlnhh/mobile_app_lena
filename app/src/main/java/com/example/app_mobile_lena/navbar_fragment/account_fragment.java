@@ -77,7 +77,6 @@ public class account_fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
         btnAccount = (Button) view.findViewById(R.id.btnAccount);
         Button btnOrderHis = view.findViewById(R.id.btnOrderHis);
-        Button btnOrderTracker = view.findViewById(R.id.btnOrderTracker);
 
         btnAccount.setOnClickListener(new View.OnClickListener() {
             @Override

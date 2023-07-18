@@ -28,6 +28,7 @@ public class CartActivity extends AppCompatActivity {
 
     public static TextView txtTotal;
     public static cartItemAdapter adapter;
+    public static ListView listView;
 
     public static void justifyListViewHeightBasedOnChildren (ListView listView) {
 
@@ -63,7 +64,7 @@ public class CartActivity extends AppCompatActivity {
         Button btnGoToPayment = findViewById(R.id.btnPay);
         LinearLayout ll = findViewById(R.id.llCoupon);
         ImageButton btnBack = findViewById(R.id.btnGoBack);
-        ListView listView = findViewById(R.id.itemList);
+        listView = findViewById(R.id.itemList);
         txtTotal = findViewById(R.id.textTotalOrderPrice2);
         ArrayList<String> name = new ArrayList<>();
         ArrayList<String> cate = new ArrayList<>();

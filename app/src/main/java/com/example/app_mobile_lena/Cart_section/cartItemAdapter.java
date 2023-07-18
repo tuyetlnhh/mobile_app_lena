@@ -178,6 +178,10 @@ public class cartItemAdapter  extends BaseAdapter {
                         price.remove(positionToRemove);
 
                         CartActivity.adapter.notifyDataSetChanged();
+                        String txtTotal1 = addThousandSeparator(Double.valueOf(getTotal(user.getCart())));
+                        CartActivity.txtTotal.setText(txtTotal1);
+                        CartActivity.justifyListViewHeightBasedOnChildren(CartActivity.listView);
+
                     }});
                 adb.show();
 
