@@ -83,13 +83,6 @@
                     android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/txtFullname"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Ho va ten"
-                    android:textSize="18sp" />
-
-                <TextView
                     android:id="@+id/txtPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

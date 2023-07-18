@@ -88,8 +88,6 @@ public class QRScanActivity extends AppCompatActivity implements MyCallback {
         SurfaceView surfaceView = findViewById(R.id.surfaceView);
 
 
-
-
         // Kiểm tra quyền truy cập camera
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_REQUEST_CODE);
